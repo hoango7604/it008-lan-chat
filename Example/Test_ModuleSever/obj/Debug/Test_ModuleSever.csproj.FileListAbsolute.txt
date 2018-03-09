@@ -1,0 +1,11 @@
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\bin\Debug\Test_ModuleSever.exe.config
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\bin\Debug\Test_ModuleSever.exe
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\bin\Debug\Test_ModuleSever.pdb
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\bin\Debug\Cy_Connection_Sever.dll
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\bin\Debug\Cy_Connection_Sever.pdb
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.csprojResolveAssemblyReference.cache
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.Form1.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.Properties.Resources.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.csproj.GenerateResource.Cache
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.exe
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleSever\obj\Debug\Test_ModuleSever.pdb

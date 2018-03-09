@@ -1,0 +1,11 @@
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\bin\Debug\Test_ModuleCilent.exe.config
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\bin\Debug\Test_ModuleCilent.exe
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\bin\Debug\Test_ModuleCilent.pdb
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\bin\Debug\Cy_Connection_Client.dll
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\bin\Debug\Cy_Connection_Client.pdb
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.csprojResolveAssemblyReference.cache
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.Properties.Resources.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.csproj.GenerateResource.Cache
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.exe
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.pdb
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\Test_ModuleCilent\obj\Debug\Test_ModuleCilent.Client.resources
