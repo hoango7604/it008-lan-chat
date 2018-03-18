@@ -24,30 +24,72 @@ namespace Test_ModuleSever
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            lvMess.View = View.List;
+      
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             module.Connect();
             module.ReciveTextEvent += TextListener;
+            module.ReciveImageEvent += ImageListener;
+          
+        }
+      
+        private void TextListener(object obj, int RoomId)
+        {
+            MessageBox.Show("Sever recive Mess, Room " + RoomId + " : " + obj.ToString());
         }
 
-        private void btSent_Click(object sender, EventArgs e)
+        private void ImageListener(object obj, int RoomId)
         {
-            module.Sent(tbMess.Text);
-            addmess(tbMess.Text);
+            addmess(obj);
         }
 
-        private void TextListener(object mess)
+        private void addmess(object data)
         {
-            addmess(mess.ToString());
+            // o thể sửa UI từ 1 thread khác
+            // https://stackoverflow.com/questions/14750872/c-sharp-controls-created-on-one-thread-cannot-be-parented-to-a-control-on-a-diff
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    Image img = data as Image;
+                    PictureBox picBox = new PictureBox();
+                    picBox.Image = img;
+                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    layout.Controls.Add(picBox);
+
+
+                });
+            }
+            else
+            {
+                Image img = data as Image;
+                PictureBox picBox = new PictureBox();
+                picBox.Image = img;
+                picBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                layout.Controls.Add(picBox);
+            }
         }
 
-        public void addmess(string text)
+
+        private void btChoose_Click(object sender, EventArgs e)
         {
-            ListViewItem item = new ListViewItem(text);
-            lvMess.Items.Add(item);
+            OpenFileDialog dialog = new OpenFileDialog();
+            // dialog.Filter = "*png";
+            dialog.Multiselect = false;
+            dialog.ShowDialog();
+            string s = dialog.FileName;
+            tbSoure.Text = s;
+        }
+
+        private void btSend_Click(object sender, EventArgs e)
+        {
+            Image img = Image.FromFile(tbSoure.Text.ToString());
+            addmess(img);
+            tbSoure.Clear();
+            module.Send(img, DataType.Image, 0);
+            module.Send(tbSoure.Text, DataType.Text, 0);
         }
     }
 }

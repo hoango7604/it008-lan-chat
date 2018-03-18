@@ -14,8 +14,9 @@ namespace Cy_Connection_Sever
 
     public class Sever_module : DataQueue
     {
-        public delegate void MessingDelegate(object obj);
+        public delegate void MessingDelegate(object obj, int RoomId);
         public event MessingDelegate ReciveTextEvent;
+        public event MessingDelegate ReciveImageEvent;
         private IPEndPoint Ip;
         private Socket Sever;
         private List<Socket> ListClient;
@@ -24,7 +25,7 @@ namespace Cy_Connection_Sever
 
         public void Connect()
         {
-            sizeofdata = 5000;
+            sizeofdata = 30000;
             ListClient = new List<Socket>();
             Ip = new IPEndPoint(IPAddress.Any, 9999);
             Sever = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
@@ -63,12 +64,19 @@ namespace Cy_Connection_Sever
             Sever.Close();
         }
 
-        public void Sent(object obj)
+        public void Send(object obj, DataType type, byte RoomId)
         {
             foreach (Socket _client in ListClient)
             {
-                PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 244), _client);
-                divide.Divide(Serialize(obj));
+                PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), _client, type, RoomId);
+                if (type == DataType.Text)
+                {
+                    divide.Divide(DataConverter.Serialize_Text(obj));
+                }
+                if (type == DataType.Image)
+                {
+                    divide.Divide(DataConverter.Serialize_Image(obj));
+                }
             }
         }
 
@@ -96,33 +104,29 @@ namespace Cy_Connection_Sever
             }
         }
 
-        private byte[] Serialize(object obj)
-        {
-            MemoryStream stream = new MemoryStream();
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, obj);
-            return stream.ToArray();
-        }
 
-        private object DeSerialize(byte[] data)
+        protected override void We_Have_Data_here(byte[] data, DataType type, int RoomId)
         {
-            MemoryStream stream = new MemoryStream(data);
-            BinaryFormatter formatter = new BinaryFormatter();
-            return formatter.Deserialize(stream);
-        }
-
-        /////////////////////////////////////////////////////////////////////////////////
-
-        protected override void We_Have_Data_here(byte[] data)
-        {
-            String mess = (string)DeSerialize(data);
-            if (ReciveTextEvent != null)
+            if (type == DataType.Text)
             {
-                ReciveTextEvent(mess);
+                object mess = DataConverter.Deserialize_Text(data);
+                if (ReciveTextEvent != null)
+                {
+                    ReciveTextEvent(mess, RoomId);
+                }
             }
+            if (type == DataType.Image)
+            {
+                object img = DataConverter.DeSerialize_Image(data);
+                if (ReciveImageEvent != null)
+                {
+                    ReciveImageEvent(img, RoomId);
+                }
+            }
+
         }
 
-     
+
     }
 
 }

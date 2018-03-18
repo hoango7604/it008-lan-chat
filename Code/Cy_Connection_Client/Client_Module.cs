@@ -12,11 +12,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Cy_Connection_Client
 {
-
     public class Client_module : DataQueue
     {
-        public delegate void MessingDelegate(object obj);
+        public delegate void MessingDelegate(object obj, int RoomId);
         public event MessingDelegate ReciveTextEvent;
+        public event MessingDelegate ReciveImageEvent;
         protected IPEndPoint Ip;
         protected Socket Client;
 
@@ -26,7 +26,7 @@ namespace Cy_Connection_Client
         {
 
             // Còn thiếu 2 công đoạn là size định size data cho mỗi lần gửi và xác định IP phú hợp ,nên tạm thời set tĩnh
-            sizeofdata = 5000;
+            sizeofdata = 30000;
             Ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9999);
             Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
             try
@@ -48,29 +48,21 @@ namespace Cy_Connection_Client
             Client.Close();
         }
 
-        public void Send(object obj)
+        public void Send(object obj, DataType type, byte RoomId)
         {
-            PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), Client);
-            divide.Divide(Serialize(obj));
+            PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), Client, type, RoomId);
+            if (type == DataType.Text)
+            {
+                divide.Divide(DataConverter.Serialize_Text(obj));
+            }
+            if (type == DataType.Image)
+            {
+                divide.Divide(DataConverter.Serialize_Image(obj));
+            }
             //trong divide đã bao gồm tác vụ sent
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-        private byte[] Serialize(object obj)
-        {
-            MemoryStream stream = new MemoryStream();
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, obj);
-            return stream.ToArray();
-        }
 
-        private object DeSerialize(byte[] data)
-        {
-            MemoryStream stream = new MemoryStream(data);
-            BinaryFormatter formatter = new BinaryFormatter();
-            return formatter.Deserialize(stream);
-
-        }
 
         private void Receiver()
         {
@@ -91,19 +83,27 @@ namespace Cy_Connection_Client
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-        protected override void We_Have_Data_here(byte[] data)
+        protected override void We_Have_Data_here(byte[] data, DataType type, int RoomId)
         {
-            //mặc định là text trc
-            String mess = (string)DeSerialize(data);
-            if (ReciveTextEvent != null)
+            if (type == DataType.Text)
             {
-                ReciveTextEvent(mess);
+                object mess = DataConverter.Deserialize_Text(data);
+                if (ReciveTextEvent != null)
+                {
+                    ReciveTextEvent(mess, RoomId);
+                }
             }
+            if (type == DataType.Image)
+            {
+                object img = DataConverter.DeSerialize_Image(data);
+                if (ReciveImageEvent != null)
+                {
+                    ReciveImageEvent(img, RoomId);
+                }
+
+            }
+
         }
-
-
-
-
 
     }
 

@@ -10,16 +10,23 @@ using System.Net.Sockets;
 namespace Cy_Connection_Client
 
 {
+    public enum DataType
+    {
+        Text = 0,
+        Image = 1
+    }
+
     public class DataQueue
     {
         //À nhìn tên class là Queue thui chứ nó o có tính chất của queue đâu
 
         class Data
         {
-            public int ThreatIndex;
-            public byte[] Info;
-            public int stats;
-
+            public int ThreatIndex { get; set; }
+            public byte[] Info { get; set; }
+            public int stats { get; set; }
+            public DataType Type { get; set; }
+            public byte RoomId { get; set; }
             public Data() { }
             public Data(int stast, int thread, byte[] data)
             {
@@ -32,14 +39,15 @@ namespace Cy_Connection_Client
              threadindex : Nhằm phân biệt các tác vụ kháu nhau ( vai trò giống như số Port trong mạng )
              2: bắt đầu gửi, lúc này sẽ gửi Info là dung lượng file
                  lúc này 4 byte tiếp theo sẽ lưu trọng lượng vs 01 52 11 13 -> 01521113 byte ~ 1.45 mb
+                 kém thep type ( 1 byte ) định dạng loại file, Roomid xác dịnh phòng ( room ) và ứng dụng sẽ gửi mess
              1: đang gửi và còn nữa
              0: đợt cuối và o gửi nữa
 
              Tuy nhiên khi ở list lưu trữ thì stats mang ý nghĩa là vị trí tiếp theo gép mảng vào
 
              thứ tự là 
-             | stats | threatIndex | info <- main |
-                1byte    1bute           size
+             | stats | threatIndex | info <- main | 
+                1byte    1byte           size      
 
               */
         }
@@ -71,6 +79,8 @@ namespace Cy_Connection_Client
                 int _size = data[2] * 1000000 + data[3] * 10000 + data[4] * 100 + data[5] + 1;
                 _data.Info = new byte[_size];
                 _data.stats = 0;
+                _data.Type = (DataType)data[6];
+                _data.RoomId = data[7];
                 queue.Add(_data);
 
             }
@@ -101,6 +111,7 @@ namespace Cy_Connection_Client
                 {
                     lock (Synclock)
                     {
+
                         int count = 0;
                         while (count < sizeofdata) // gắn zô thui
                         {
@@ -113,6 +124,7 @@ namespace Cy_Connection_Client
                 }
             }
         }
+
 
         //Hàm gom dữ liệu lần cuối cùng do dữ liệu có thể o toàn vẹn ( có dung lượng < size )
         // Cơ bản nó thì o khác mấy so vs pull nhưng tương lai mình sẽ thêm 1 cố thông số ở cuối byte dữ liệu ( như địa chỉ ip cần gửi , loại file .. ) nên về sau sửa tiện hơn
@@ -127,20 +139,17 @@ namespace Cy_Connection_Client
                     int sizeoflastdata = dataitem.Info.Length % sizeofdata;
                     lock (Synclock)
                     {
+
                         int count = 0;
-                        while (count < sizeoflastdata)
+                        while (count < sizeoflastdata) // gắn zô thui
                         {
                             dataitem.Info[dataitem.stats] = _data[2 + count];
                             count++;
                             dataitem.stats++;
                         }
                     }
-                    /*   for (int i = 0; i < dataitem.Info.Length; i++)
-                       {
-                           Console.Write(dataitem.Info[i] + " ");
-                       }*/
 
-                    We_Have_Data_here(dataitem.Info);
+                    We_Have_Data_here(dataitem.Info, dataitem.Type, dataitem.RoomId);
                     queue.Remove(dataitem);
                     break;
                 }
@@ -149,11 +158,10 @@ namespace Cy_Connection_Client
 
         }
 
-        protected virtual void We_Have_Data_here(byte[] data) { }
+        protected virtual void We_Have_Data_here(byte[] data, DataType Type, int RoomId) { }
         //t biết tên hàm o đúng quy tắc :v
 
     }
-
 
     class PhanManh
     {
@@ -161,22 +169,29 @@ namespace Cy_Connection_Client
         int numerofrow = 0;
         byte Index;
         Socket socket;
-        public PhanManh(int size, byte Index, Socket socket)
+        DataType type;
+        byte RoomId;
+
+        public PhanManh(int size, byte Index, Socket socket, DataType type, byte RoomId)
         {
             sizeofdata = size;
             this.socket = socket;
             this.Index = Index;
+            this.type = type;
+            this.RoomId = RoomId;
         }
 
         public void Divide(byte[] data)
         {
             int datalength = data.Length - 1;
             int remain = datalength;
-            byte[] temp = new byte[6];
+            byte[] temp = new byte[8];
             temp[2] = (byte)(datalength / 1000000);
             temp[3] = (byte)((datalength - temp[2] * 1000000) / 10000);
             temp[4] = (byte)((datalength - temp[2] * 1000000 - temp[3] * 10000) / 100);
             temp[5] = (byte)(datalength - temp[2] * 1000000 - temp[3] * 10000 - temp[4] * 100);
+            temp[6] = (byte)type;
+            temp[7] = RoomId;
             //chia dung lượng dữ liệu ra để lưu vào mảng byte ,vd 9875 => 00 00 98 75
             send(2, Index, temp);
             while (remain > sizeofdata)

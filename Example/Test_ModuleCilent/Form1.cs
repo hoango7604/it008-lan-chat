@@ -19,29 +19,70 @@ namespace Test_ModuleCilent
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            lvMess.View = View.List;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             module.Connect();
             module.ReciveTextEvent += TextListener;
+            module.ReciveImageEvent += ImageListener;
         }
 
-        private void btSent_Click(object sender, EventArgs e)
+
+        private void TextListener(object obj, int RoomId)
         {
-            module.Send(tbMess.Text);
-            addmess(tbMess.Text);
+            MessageBox.Show("Client recive Mess, Room " + RoomId + " : " + obj.ToString());
         }
 
-        private void TextListener(object obj)
+        private void ImageListener(object obj, int RoomId)
         {
-            addmess(obj.ToString());          
+            addmess(obj);
         }
-        public void addmess(string text)
+
+        private void addmess(object data)
         {
-            ListViewItem item = new ListViewItem(text);
-            lvMess.Items.Add(item);
+            // o thể sửa UI từ 1 thread khác
+            // https://stackoverflow.com/questions/14750872/c-sharp-controls-created-on-one-thread-cannot-be-parented-to-a-control-on-a-diff
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    Image img = data as Image;
+                    PictureBox picBox = new PictureBox();
+                    picBox.Image = img;
+                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    layout.Controls.Add(picBox);
+
+
+                });
+            }
+            else
+            {
+                Image img = data as Image;
+                PictureBox picBox = new PictureBox();
+                picBox.Image = img;
+                picBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                layout.Controls.Add(picBox);
+            }
+        }
+
+        private void btSend_Click(object sender, EventArgs e)
+        {
+            Image img = Image.FromFile(tbSoure.Text.ToString());
+            addmess(img);
+            tbSoure.Clear();
+            module.Send(img, DataType.Image, 0);
+            module.Send(tbSoure.Text, DataType.Text, 0);
+        }
+
+        private void btChoose_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            // dialog.Filter = "*png";
+            dialog.Multiselect = false;
+            dialog.ShowDialog();
+            string s = dialog.FileName;
+            tbSoure.Text = s;
         }
     }
 }
