@@ -35,8 +35,9 @@ namespace Cy_Connection_Sever
                 this.Info = data;
             }
             /*
-             Stats (ý là status nhưng stast dễ đọc hơn ) : Gồm 3 trạng thái chính 
-             threadindex : Nhằm phân biệt các tác vụ kháu nhau ( vai trò giống như số Port trong mạng )
+              Threadindex : Nhằm phân biệt các tác vụ khác nhau ( vai trò giống như số Port trong mạng )
+		Stats: Gồm 3 trạng thái chính 
+
              2: bắt đầu gửi, lúc này sẽ gửi Info là dung lượng file
                  lúc này 4 byte tiếp theo sẽ lưu trọng lượng vs 01 52 11 13 -> 01521113 byte ~ 1.45 mb
                  kém thep type ( 1 byte ) định dạng loại file, Roomid xác dịnh phòng ( room ) và ứng dụng sẽ gửi mess
@@ -45,9 +46,11 @@ namespace Cy_Connection_Sever
 
              Tuy nhiên khi ở list lưu trữ thì stats mang ý nghĩa là vị trí tiếp theo gép mảng vào
 
+             type : loại tin nhắn
+             RoomId : xác định tin nhắn này nằm trong khung chat nào
              thứ tự là 
-             | stats | threatIndex | info <- main | 
-                1byte    1byte           size      
+             | stats | threatIndex | info <- dữ liệu chính | type | RoomId |
+                1byte    1byte            sizeofdata         1byte  1byte
 
               */
         }
@@ -56,7 +59,7 @@ namespace Cy_Connection_Sever
         // List<Data> compiling_data = new List<Data>();
 
         protected int sizeofdata;// số byte dữ liệu ở mỗi lần gửi
-        object Synclock = new object(); // dòng để khóa chi tiết xem ở threadpooling
+        object Synclock = new object(); // dòng để khóa chi tiết xem ở ThreadLock
 
         public DataQueue()
         {
@@ -159,11 +162,10 @@ namespace Cy_Connection_Sever
         }
 
         protected virtual void We_Have_Data_here(byte[] data, DataType Type, int RoomId) { }
-        //t biết tên hàm o đúng quy tắc :v
 
     }
 
-    class PhanManh
+    class DIVISION
     {
         int sizeofdata;
         int numerofrow = 0;
@@ -171,8 +173,8 @@ namespace Cy_Connection_Sever
         Socket socket;
         DataType type;
         byte RoomId;
-
-        public PhanManh(int size, byte Index, Socket socket, DataType type, byte RoomId)
+         
+        public DIVISION(int size, byte Index, Socket socket, DataType type, byte RoomId)
         {
             sizeofdata = size;
             this.socket = socket;

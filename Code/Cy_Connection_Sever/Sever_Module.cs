@@ -68,7 +68,7 @@ namespace Cy_Connection_Sever
         {
             foreach (Socket _client in ListClient)
             {
-                PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), _client, type, RoomId);
+                DIVISION divide = new DIVISION(sizeofdata, (byte)new Random().Next(1, 254), _client, type, RoomId);
                 if (type == DataType.Text)
                 {
                     divide.Divide(DataConverter.Serialize_Text(obj));
@@ -103,7 +103,7 @@ namespace Cy_Connection_Sever
                 client.Close();
             }
         }
-
+         
 
         protected override void We_Have_Data_here(byte[] data, DataType type, int RoomId)
         {
