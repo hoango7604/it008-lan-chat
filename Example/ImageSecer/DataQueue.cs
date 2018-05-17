@@ -7,8 +7,7 @@ using System.Threading;
 using System.Net.Sockets;
 
 
-namespace Cy_Connection_Client
-
+namespace ImageSecer
 {
     public enum DataType
     {
@@ -19,8 +18,6 @@ namespace Cy_Connection_Client
         CreatRoom = 12,
         SenderUsername = 13
     }
-
-
     public class DataQueue
     {
         //À nhìn tên class là Queue thui chứ nó o có tính chất của queue đâu
@@ -40,24 +37,24 @@ namespace Cy_Connection_Client
                 this.Info = data;
             }
             /*
-             Threadindex : Nhằm phân biệt các tác vụ khác nhau ( vai trò giống như số Port trong mạng )
-		Stats: Gồm 3 trạng thái chính 
+            Threadindex : Nhằm phân biệt các tác vụ khác nhau ( vai trò giống như số Port trong mạng )
+       Stats: Gồm 3 trạng thái chính 
 
-             2: bắt đầu gửi, lúc này sẽ gửi Info là dung lượng file
-                 lúc này 4 byte tiếp theo sẽ lưu trọng lượng vs 01 52 11 13 -> 01521113 byte ~ 1.45 mb
-                 kém thep type ( 1 byte ) định dạng loại file, Roomid xác dịnh phòng ( room ) và ứng dụng sẽ gửi mess
-             1: đang gửi và còn nữa
-             0: đợt cuối và o gửi nữa
+            2: bắt đầu gửi, lúc này sẽ gửi Info là dung lượng file
+                lúc này 4 byte tiếp theo sẽ lưu trọng lượng vs 01 52 11 13 -> 01521113 byte ~ 1.45 mb
+                kém thep type ( 1 byte ) định dạng loại file, Roomid xác dịnh phòng ( room ) và ứng dụng sẽ gửi mess
+            1: đang gửi và còn nữa
+            0: đợt cuối và o gửi nữa
 
-             Tuy nhiên khi ở list lưu trữ thì stats mang ý nghĩa là vị trí tiếp theo gép mảng vào
+            Tuy nhiên khi ở list lưu trữ thì stats mang ý nghĩa là vị trí tiếp theo gép mảng vào
 
-             type : loại tin nhắn
-             RoomId : xác định tin nhắn này nằm trong khung chat nào
-             thứ tự là 
-             | stats | threatIndex | info <- dữ liệu chính | type | RoomId |
-                1byte    1byte            sizeofdata         1byte  1byte
+            type : loại tin nhắn
+            RoomId : xác định tin nhắn này nằm trong khung chat nào
+            thứ tự là 
+            | stats | threatIndex | info <- dữ liệu chính | type | RoomId |
+               1byte    1byte            sizeofdata         1byte  1byte
 
-              */
+             */
         }
 
         List<Data> queue = new List<Data>();
@@ -76,6 +73,7 @@ namespace Cy_Connection_Client
             sizeofdata = size;
         }
 
+
         public void Extract_n_Pull(byte[] data)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
@@ -86,7 +84,7 @@ namespace Cy_Connection_Client
         /// Nhận dữ liệu được truyền đến
         /// </summary>
         /// <param name="data">dữ liệu thô</param>
-        public void Extract_n_Pull(Socket socket, byte[] data)
+        public void Extract_n_Pull(Socket socket,byte[] data)
         {
             sender = socket;
             Data _data = new Data();
@@ -165,7 +163,7 @@ namespace Cy_Connection_Client
                         }
                     }
 
-                    We_Have_Data_here(sender, dataitem.Info, dataitem.Type, dataitem.RoomId);
+                    We_Have_Data_here(sender,dataitem.Info, dataitem.Type, dataitem.RoomId);
                     queue.Remove(dataitem);
                     break;
                 }
@@ -174,7 +172,7 @@ namespace Cy_Connection_Client
 
         }
 
-        protected virtual void We_Have_Data_here(Socket sender, byte[] data, DataType Type, int RoomId) { }
+        protected virtual void We_Have_Data_here(Socket sender,byte[] data, DataType Type, int RoomId) { }
 
     }
 

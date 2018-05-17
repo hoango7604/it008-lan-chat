@@ -8,46 +8,34 @@ using System.Net;
 using System.Threading;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Drawing;
+using System.ComponentModel;
+using System.Drawing.Imaging;
 
-
-namespace Cy_Connection_Client
+namespace ImageClient
 {
+
     public class Client_module : DataQueue
     {
-        public delegate void MessingDelegate(string sender, object obj, int RoomId);
+        public delegate void MessingDelegate( string sender,object obj,int RoomId);
         public delegate void LoginDelegate(string username);
         public delegate void ListClientDelegate(string[] listClients);
         public delegate void CreatRoomDelegate(int id, string[] listMember);
-        /// <summary>
-        /// Sự kiện xảy ra khi nhận tin nhắn là text
-        /// </summary>
         public event MessingDelegate ReciveTextEvent;
-        /// <summary>
-        /// Sự kiện xảy ra khi nhận tin nhắn hình
-        /// </summary>
         public event MessingDelegate ReciveImageEvent;
-        /// <summary>
-        /// Sự kiện xảy ra khi client Login và Sever gửi về kết quả nếu login thành công ( dùng để xác định Login dc hay o )
-        /// </summary>
         public event LoginDelegate ReciveLoginEvent;
-        /// <summary>
-        /// Sự kiện xảy ra khi sever đưa cho client 1 list danh sách các user đang online
-        /// </summary>
         public event ListClientDelegate ReceiveListClientEvent;
-        /// <summary>
-        /// Sự kiện xả ra khi client nhận dc yêu cầu vào 1 phòng chat
-        /// </summary>
         public event CreatRoomDelegate ReceiveCreatRoomEvent;
         protected IPEndPoint Ip;
         protected Socket Client;
+        
 
-
-
+       
         public void Connect()
         {
 
             // Còn thiếu 2 công đoạn là size định size data cho mỗi lần gửi và xác định IP phú hợp ,nên tạm thời set tĩnh
-            sizeofdata = 30000;
+            sizeofdata = 20000;
             Ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9999);
             Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
             try
@@ -69,9 +57,9 @@ namespace Cy_Connection_Client
             Client.Close();
         }
 
-        public void Send(object obj, DataType type, byte RoomId)
-        {
-            PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), Client, type, RoomId);
+        public void Send(object obj,DataType type,byte RoomId)
+        { 
+            PhanManh divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 254), Client,type,RoomId);
             if (type == DataType.Image)
             {
                 divide.DivideAndSend(DataConverter.Serialize_Image(obj));
@@ -80,12 +68,27 @@ namespace Cy_Connection_Client
             {
                 divide.DivideAndSend(DataConverter.Serialize_Text(obj));
             }
+        } 
+        
+        
+        public void LogIn(string username, string pass)
+        {
+            string user_pass = username + " " + pass;
+            Send(user_pass, DataType.Login, 0);
         }
 
+        public void CreatRoomChat(List<string> listmember)
+        {
+            string usernames = "";
+            foreach (string name in listmember)
+            {
+                usernames +=  name + " ";
+            }
+            Send(usernames, DataType.CreatRoom, 0);
+        }
 
-        /// <summary>
-        /// chờ nhận tin nhắn
-        /// </summary>
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void Receiver()
         {
             try
@@ -103,29 +106,28 @@ namespace Cy_Connection_Client
                 Console.Write("Client reciver err " + e);
             }
         }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //tên thằng vừa gửi tin nhắn
         protected string SenderName = "";
 
-        protected override void We_Have_Data_here(Socket sender, byte[] data, DataType type, int RoomId)
+        protected override void We_Have_Data_here(Socket sender,byte[] data, DataType type, int RoomId)
         {
-            //if từng loại Dtatatype 
             if (type == DataType.Text)
             {
                 object mess = DataConverter.Deserialize_Text(data);
                 if (ReciveTextEvent != null)
                 {
-                    ReciveTextEvent(SenderName, mess, RoomId);
+                    ReciveTextEvent(SenderName, mess,RoomId);
                 }
             }
-            if (type == DataType.Image)
+            if (type== DataType.Image)
             {
                 object img = DataConverter.DeSerialize_Image(data);
                 if (ReciveImageEvent != null)
-                {
-                    ReciveImageEvent(SenderName, img, RoomId);
-                }
+                    {
+                        ReciveImageEvent(SenderName, img, RoomId);
+                    }
             }
             if (type == DataType.Login)
             {
@@ -163,3 +165,5 @@ namespace Cy_Connection_Client
     }
 
 }
+
+

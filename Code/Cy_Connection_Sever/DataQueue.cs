@@ -13,8 +13,13 @@ namespace Cy_Connection_Sever
     public enum DataType
     {
         Text = 0,
-        Image = 1
+        Image = 1,
+        Login = 10,
+        ListClient = 11,
+        CreatRoom = 12,
+        SenderUsername = 13
     }
+
 
     public class DataQueue
     {
@@ -35,7 +40,7 @@ namespace Cy_Connection_Sever
                 this.Info = data;
             }
             /*
-              Threadindex : Nhằm phân biệt các tác vụ khác nhau ( vai trò giống như số Port trong mạng )
+             Threadindex : Nhằm phân biệt các tác vụ khác nhau ( vai trò giống như số Port trong mạng )
 		Stats: Gồm 3 trạng thái chính 
 
              2: bắt đầu gửi, lúc này sẽ gửi Info là dung lượng file
@@ -56,10 +61,10 @@ namespace Cy_Connection_Sever
         }
 
         List<Data> queue = new List<Data>();
-        // List<Data> compiling_data = new List<Data>();
 
+        Socket sender;
         protected int sizeofdata;// số byte dữ liệu ở mỗi lần gửi
-        object Synclock = new object(); // dòng để khóa chi tiết xem ở ThreadLock
+        object Synclock = new object(); // dòng để khóa chi tiết xem ở threadpooling
 
         public DataQueue()
         {
@@ -73,6 +78,17 @@ namespace Cy_Connection_Sever
 
         public void Extract_n_Pull(byte[] data)
         {
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            Extract_n_Pull(socket, data);
+        }
+
+        /// <summary>
+        /// Nhận dữ liệu được truyền đến
+        /// </summary>
+        /// <param name="data">dữ liệu thô</param>
+        public void Extract_n_Pull(Socket socket, byte[] data)
+        {
+            sender = socket;
             Data _data = new Data();
             _data.stats = data[0];
             _data.ThreatIndex = data[1];
@@ -114,7 +130,6 @@ namespace Cy_Connection_Sever
                 {
                     lock (Synclock)
                     {
-
                         int count = 0;
                         while (count < sizeofdata) // gắn zô thui
                         {
@@ -127,7 +142,6 @@ namespace Cy_Connection_Sever
                 }
             }
         }
-
 
         //Hàm gom dữ liệu lần cuối cùng do dữ liệu có thể o toàn vẹn ( có dung lượng < size )
         // Cơ bản nó thì o khác mấy so vs pull nhưng tương lai mình sẽ thêm 1 cố thông số ở cuối byte dữ liệu ( như địa chỉ ip cần gửi , loại file .. ) nên về sau sửa tiện hơn
@@ -142,9 +156,8 @@ namespace Cy_Connection_Sever
                     int sizeoflastdata = dataitem.Info.Length % sizeofdata;
                     lock (Synclock)
                     {
-
                         int count = 0;
-                        while (count < sizeoflastdata) // gắn zô thui
+                        while (count < sizeoflastdata)
                         {
                             dataitem.Info[dataitem.stats] = _data[2 + count];
                             count++;
@@ -152,7 +165,7 @@ namespace Cy_Connection_Sever
                         }
                     }
 
-                    We_Have_Data_here(dataitem.Info, dataitem.Type, dataitem.RoomId);
+                    We_Have_Data_here(sender, dataitem.Info, dataitem.Type, dataitem.RoomId);
                     queue.Remove(dataitem);
                     break;
                 }
@@ -161,11 +174,11 @@ namespace Cy_Connection_Sever
 
         }
 
-        protected virtual void We_Have_Data_here(byte[] data, DataType Type, int RoomId) { }
+        protected virtual void We_Have_Data_here(Socket sender, byte[] data, DataType Type, int RoomId) { }
 
     }
 
-    class DIVISION
+    class PhanManh
     {
         int sizeofdata;
         int numerofrow = 0;
@@ -173,8 +186,8 @@ namespace Cy_Connection_Sever
         Socket socket;
         DataType type;
         byte RoomId;
-         
-        public DIVISION(int size, byte Index, Socket socket, DataType type, byte RoomId)
+
+        public PhanManh(int size, byte Index, Socket socket, DataType type, byte RoomId)
         {
             sizeofdata = size;
             this.socket = socket;
@@ -183,7 +196,11 @@ namespace Cy_Connection_Sever
             this.RoomId = RoomId;
         }
 
-        public void Divide(byte[] data)
+        /// <summary>
+        /// Gửi dũ liệu thô đi
+        /// </summary>
+        /// <param name="data"></param>
+        public void DivideAndSend(byte[] data)
         {
             int datalength = data.Length - 1;
             int remain = datalength;
@@ -227,6 +244,5 @@ namespace Cy_Connection_Sever
 
 
     }
-
 
 }

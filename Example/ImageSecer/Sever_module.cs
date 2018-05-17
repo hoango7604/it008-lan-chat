@@ -11,13 +11,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Cy_Connection_Sever
-{
+namespace ImageSecer
 
+{
     struct Client
     {
-        public Socket socket;
-        public string username;
+       public Socket socket;
+       public string username;
     }
 
     class Room
@@ -29,19 +29,17 @@ namespace Cy_Connection_Sever
 
     public class Sever_module : DataQueue
     {
-        public delegate void MessingDelegate(object obj, int RoomId);
-        public event MessingDelegate ReciveTextEvent;   // sự kiện khi nhận tin nhắn Text 
-        public event MessingDelegate ReciveImageEvent; // Sự kiện khi nhận tin nhắn hình
+        public delegate void MessingDelegate(object obj,int RoomId);
+        public event MessingDelegate ReciveTextEvent;
+        public event MessingDelegate ReciveImageEvent;
         private IPEndPoint Ip;
         private Socket Sever;
-        private List<Socket> tempclient; // mấy thằng lờ bật app nhưng chưa login
-        private List<Client> ListClients; //List các thằng đang online
-        private List<Room> ListRoom; //List phòng
-
+        private List<Socket> tempclient;
+        private List<Client> ListClients;
+        private List<Room> ListRoom;
         /// //////////////////////////////////////////////////////////////////////////////
 
-        #region kết nối, ngắt kết nối
-
+        #region kết nối
         public void Connect()
         {
             sizeofdata = 20000;
@@ -58,7 +56,6 @@ namespace Cy_Connection_Sever
                 {
                     while (true)
                     {
-                        //bỏ sever vào danh sách tạm ( chưa login)
                         Sever.Listen(100);
                         Socket client = Sever.Accept();
                         tempclient.Add(client);
@@ -88,18 +85,10 @@ namespace Cy_Connection_Sever
 
         #endregion
 
+        #region Gửi
 
-        #region các tác vụ gửi
-
-        /// <summary>
-        /// Gửi bình thường ( gửi theo mã phòng )
-        /// </summary>
-        /// <param name="obj">nội dung gửi</param>
-        /// <param name="type">enum loại thông tin cần gửi</param>
-        /// <param name="roomid">mã phòng</param>
-        public void Send(object obj, DataType type, byte roomid)
-        {   
-            //xác định phòng
+        public void Send(object obj, DataType type,byte roomid)
+        {
             Room room = new Room();
             foreach (Room _room in ListRoom)
             {
@@ -109,18 +98,13 @@ namespace Cy_Connection_Sever
                     break;
                 }
             }
-            // gửi nội dung éến con dân trong phòng
+
             foreach (Client member in room.Members)
             {
                 Send_1_Client(obj, type, member.socket, room.Id);
             }
         }
 
-        /// <summary>
-        /// Gửi đến toàn thể dân đen đã login
-        /// </summary>
-        /// <param name="obj">nội dung gửi</param>
-        /// <param name="type">enum loại thông tin cần gửi</param>
         public void SendAll(object obj, DataType type)
         {
             foreach (Client _client in ListClients)
@@ -133,13 +117,9 @@ namespace Cy_Connection_Sever
         }
 
         /// <summary>
-        /// Gửi đến 1 thằng lờ nào đó 
+        /// chỉ gửi qua client
         /// </summary>
-        /// <param name="obj">nội dung tin nhắn gừi</param>
-        /// <param name="type">enum loại thông tin cần gửi</param>
-        /// <param name="socket">Socket của thằng lờ cần gửi</param>
-        /// <param name="roomid">và dĩ nhiên cũng cần mã phòng </param>
-        public void Send_1_Client(object obj, DataType type, Socket socket, byte roomid)
+        public void Send_1_Client(object obj, DataType type, Socket socket,byte roomid)
         {
             PhanManh Divide = new PhanManh(sizeofdata, (byte)new Random().Next(1, 244), socket, type, roomid);
             if (type == DataType.Image)
@@ -152,27 +132,22 @@ namespace Cy_Connection_Sever
             }
 
         }
-      
-        /// <summary>
-        /// Đưa danh sách các username cho các client đã login
-        /// </summary>
+     
+        
         public void Ping()
         {
             string usernameStr = "";
             foreach (Client client in ListClients)
             {
-                usernameStr = usernameStr + " " + client.username;
+                usernameStr = usernameStr+ " " + client.username;
             }
 
             SendAll(usernameStr, DataType.ListClient);
-
+            
         }
         #endregion
 
-        /// /////////////////////////////////////////////////////////////////////////////
-
-        #region các tác vụ nhận
-        ///cái này là hàm để chờ nhận tin nhắn
+        #region Nhận
         private void Receiver(object mclient)
         {
             Console.Write("client connected");
@@ -201,14 +176,7 @@ namespace Cy_Connection_Sever
             }
         }
 
-        /// <summary>
-        /// Gửi tin nhắn đến 1 room cụ thể
-        /// </summary>
-        /// <param name="sender">thằng gửi</param>
-        /// <param name="mess">Tin nhắn</param>
-        /// <param name="type">enum loại thông tin cần gửi</param>
-        /// <param name="Roomid">Mã phòng</param>
-        public void SendMesstoRoomm(Socket sender, object mess, DataType type, int Roomid)
+        public void SendMesstoRoomm(Socket sender,object mess, DataType type, int Roomid)
         {
             Room room = new Room();
             //xác định phònh cần gửi
@@ -222,7 +190,7 @@ namespace Cy_Connection_Sever
             }
 
             //xác định thằng lờ client nào vừ gửi
-            string sendername = "";
+            string sendername= "";
             foreach (Client cli in room.Members)
             {
                 if (cli.socket == sender)
@@ -231,11 +199,6 @@ namespace Cy_Connection_Sever
                     break;
                 }
             }
-
-           //Gửi đến từng thằng client trong phòng. Bao gồm 2 tác vụ :
-           // + Gửi tên thằng gửi
-           // + Gửi nội dung
-           // Để chắc ăn o bug khơi khơi t cho nó delay tí
 
             foreach (Client client in room.Members)
             {
@@ -247,13 +210,6 @@ namespace Cy_Connection_Sever
             }
         }
 
-        /// <summary>
-        /// Hàm phân loại thôn tin khi nhận
-        /// </summary>
-        /// <param name="sender">thằng gửi</param>
-        /// <param name="data">Tin nhắn</param>
-        /// <param name="type">enum loại thông tin cần gửi</param>
-        /// <param name="RoomId">mã phòng</param>
         protected override void We_Have_Data_here(Socket sender, byte[] data, DataType type, int RoomId)
         {
             if (type == DataType.Text)
@@ -295,7 +251,7 @@ namespace Cy_Connection_Sever
             }
             if (type == DataType.CreatRoom)
             {
-                byte id = (byte)(ListRoom.Count + 1);
+                byte id =(byte)( ListRoom.Count + 1);
                 Room room = new Room();
                 room.Id = id;
 
@@ -326,7 +282,8 @@ namespace Cy_Connection_Sever
         #endregion
 
 
+
+
     }
 
 }
-
