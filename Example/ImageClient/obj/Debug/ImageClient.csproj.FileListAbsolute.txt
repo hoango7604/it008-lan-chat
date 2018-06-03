@@ -1,9 +1,0 @@
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\bin\Debug\ImageClient.exe.config
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\bin\Debug\ImageClient.exe
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\bin\Debug\ImageClient.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.Form1.resources
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.Properties.Resources.resources
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.csproj.GenerateResource.Cache
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.exe
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageClient\obj\Debug\ImageClient.csprojResolveAssemblyReference.cache

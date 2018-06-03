@@ -1,8 +1,0 @@
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\bin\Debug\ImageSecer.exe.config
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\bin\Debug\ImageSecer.exe
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\bin\Debug\ImageSecer.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\obj\Debug\ImageSecer.Sever.resources
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\obj\Debug\ImageSecer.Properties.Resources.resources
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\obj\Debug\ImageSever.csproj.GenerateResource.Cache
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\obj\Debug\ImageSecer.exe
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Worlkpace Winform\Socket Chat\ImageSecer\obj\Debug\ImageSecer.pdb

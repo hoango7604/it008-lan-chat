@@ -1,5 +1,0 @@
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Client\bin\Debug\Cy_Connection_Client.dll
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Client\bin\Debug\Cy_Connection_Client.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.dll
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.csprojResolveAssemblyReference.cache

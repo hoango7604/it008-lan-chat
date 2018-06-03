@@ -1,5 +1,0 @@
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Sever\bin\Debug\Cy_Connection_Sever.dll
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Sever\bin\Debug\Cy_Connection_Sever.pdb
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Sever\obj\Debug\Cy_Connection_Sever.csprojResolveAssemblyReference.cache
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Sever\obj\Debug\Cy_Connection_Sever.dll
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Workspace DLL\Cy_Connection\Cy_Connection_Sever\obj\Debug\Cy_Connection_Sever.pdb
