@@ -18,8 +18,10 @@ namespace Cy_Connection_Client
         public delegate void FileMessDelegate(string sender, int indexoffile, string filename, int roomid);
         public delegate void FileDownloadDelegate(byte[] file);
         public delegate void LoginDelegate(string username);
+        public delegate void LogoutDelegate(string username, int room);
         public delegate void ListClientDelegate(string[] listClients);
         public delegate void CreatRoomDelegate(int id, string[] listMember);
+        
         /// <summary>
         /// Sự kiện xảy ra khi nhận tin nhắn là text ( người gửi, nọi dung , mã phòng )
         /// </summary>
@@ -40,6 +42,10 @@ namespace Cy_Connection_Client
         /// Sự kiện xảy ra khi client Login và Sever gửi về kết quả nếu login thành công ( dùng để xác định Login dc hay o )
         /// </summary>
         public event LoginDelegate ReciveLoginEvent;
+        /// <summary>
+        /// Sự kiệnxảy ra khi dđối phương trong phòng chat đã logout
+        /// </summary>
+        public event LogoutDelegate ReceiveLogoutEvent;
         /// <summary>
         /// Sự kiện xảy ra khi sever đưa cho client 1 list danh sách các user đang online
         /// </summary>
@@ -86,7 +92,7 @@ namespace Cy_Connection_Client
             {
                 divide.DivideAndSend(DataConverter.Serialize_Image(obj));
             }
-            if (type == DataType.Text || type == DataType.Login || type == DataType.CreatRoom || type == DataType.Filename || type == DataType.DownloadFile)
+            if (type == DataType.Text || type == DataType.Login|| type == DataType.Logout || type == DataType.CreatRoom || type == DataType.Filename || type == DataType.DownloadFile)
             {
                 divide.DivideAndSend(DataConverter.Serialize_Text(obj));
             }
@@ -144,6 +150,15 @@ namespace Cy_Connection_Client
             string user_pass = username + " " + pass;
             Send(user_pass, DataType.Login, 0);
         }
+        
+        /// <summary>
+        /// Đăng xuất
+        /// </summary>
+        /// <param name="username"></param>
+        public void Logout(string username)
+        {
+            Send(username, DataType.Logout, 0);
+        }
 
         /// <summary>
         /// Tạo 1 phòng chat
@@ -158,6 +173,7 @@ namespace Cy_Connection_Client
             }
             Send(usernames, DataType.CreatRoom, 0);
         }
+    
         /// <summary>
         /// Gửi yêu cầu tải file có mã là index
         /// </summary>
@@ -219,6 +235,14 @@ namespace Cy_Connection_Client
                 if (ReciveLoginEvent != null)
                 {
                     ReciveLoginEvent((string)LogInresult);
+                }
+            }
+            if (type == DataType.Logout)
+            {
+                object LogoutMess = DataConverter.Deserialize_Text(data);
+                if (ReceiveLogoutEvent != null)
+                {
+                    ReceiveLogoutEvent((string)LogoutMess, RoomId);
                 }
             }
 

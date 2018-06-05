@@ -12,15 +12,17 @@ namespace Cy_Connection_Sever
 {
     public enum DataType
     {
+
         Text = 0,
         Image = 1,
         File = 2,
         DownloadFile = 3,
         Login = 10,
-        ListClient = 11,
-        CreatRoom = 12,
-        SenderUsername = 13,
-        Filename = 14
+        Logout = 11,
+        ListClient = 12,
+        CreatRoom = 13,
+        SenderUsername = 14,
+        Filename = 15
     }
     public class DataQueue
     {

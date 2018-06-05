@@ -45,6 +45,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.tbsaveas = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // layout
@@ -60,12 +61,12 @@
             this.layout.RowCount = 2;
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.33161F));
-            this.layout.Size = new System.Drawing.Size(496, 184);
+            this.layout.Size = new System.Drawing.Size(564, 180);
             this.layout.TabIndex = 9;
             // 
             // tblogin
             // 
-            this.tblogin.Location = new System.Drawing.Point(528, 22);
+            this.tblogin.Location = new System.Drawing.Point(591, 22);
             this.tblogin.Name = "tblogin";
             this.tblogin.Size = new System.Drawing.Size(100, 20);
             this.tblogin.TabIndex = 10;
@@ -73,7 +74,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(643, 19);
+            this.button1.Location = new System.Drawing.Point(706, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 11;
@@ -83,7 +84,7 @@
             // 
             // tbcreatroom
             // 
-            this.tbcreatroom.Location = new System.Drawing.Point(620, 57);
+            this.tbcreatroom.Location = new System.Drawing.Point(683, 57);
             this.tbcreatroom.Name = "tbcreatroom";
             this.tbcreatroom.Size = new System.Drawing.Size(100, 20);
             this.tbcreatroom.TabIndex = 12;
@@ -91,7 +92,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(528, 57);
+            this.button2.Location = new System.Drawing.Point(591, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 13;
@@ -145,7 +146,7 @@
             // 
             // tbText
             // 
-            this.tbText.Location = new System.Drawing.Point(528, 103);
+            this.tbText.Location = new System.Drawing.Point(591, 103);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
             this.tbText.Size = new System.Drawing.Size(190, 55);
@@ -154,7 +155,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(528, 164);
+            this.button6.Location = new System.Drawing.Point(591, 164);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(178, 23);
             this.button6.TabIndex = 20;
@@ -209,11 +210,22 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "Lưu tại";
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(726, 223);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 50);
+            this.button9.TabIndex = 26;
+            this.button9.Text = "Logout";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 298);
+            this.ClientSize = new System.Drawing.Size(799, 294);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbsaveas);
             this.Controls.Add(this.button8);
@@ -258,6 +270,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox tbsaveas;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button9;
     }
 }
 

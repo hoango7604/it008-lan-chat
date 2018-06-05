@@ -133,13 +133,14 @@ namespace Cy_Connection_Sever
         /// <param name="roomid">và dĩ nhiên cũng cần mã phòng </param>
         public void Send_1_Client(object obj, byte index, DataType type, Socket socket, byte roomid)
         {
-
+           //lưu ý ở đây check thêm trường hợp client được gửi tuy còn trong phòng nhưng không còn on nữa ( lỗi socket )
+           //hiện tại chỉ xét chat 2 nguồi nên lỗi này cho qua , lưu ý kho phát triển lên chat nhóm
             PhanManh Divide = new PhanManh(sizeofdata, index, socket, type, roomid);
             if (type == DataType.Image)
             {
                 Divide.DivideAndSend(DataConverter.Serialize_Image(obj));
             }
-            if (type == DataType.Text || type == DataType.Login || type == DataType.ListClient || type == DataType.CreatRoom || type == DataType.SenderUsername || type == DataType.File)
+            if (type == DataType.Text || type == DataType.Login || type== DataType.Logout || type == DataType.ListClient || type == DataType.CreatRoom || type == DataType.SenderUsername || type == DataType.File)
             {
                 Divide.DivideAndSend(DataConverter.Serialize_Text(obj));
             }
@@ -195,6 +196,7 @@ namespace Cy_Connection_Sever
             }
             catch (Exception e)
             {
+
                 foreach (Client _client in ListClients)
                 {
                     if (_client.socket == client)
@@ -306,6 +308,49 @@ namespace Cy_Connection_Sever
             }
             #endregion
 
+            #region Logout
+            if (type == DataType.Logout)
+            {
+                string logoutusername = (string)DataConverter.Deserialize_Text(data);
+                List<Room> Logoutroom = new List<Room>();
+                //xác định những phòng bị logout
+                foreach (Room room in ListRoom)
+                {
+                    foreach (Client mem in room.Members)
+                    {
+                        if (mem.socket == sender)
+                        {
+                            Logoutroom.Add(room);
+                            break;
+                        }
+                    }
+                }
+                //gửi thông báo cho những username khác có trong phhòng
+                foreach (Room room in Logoutroom)
+                {
+                    foreach (Client mem in room.Members)
+                    {
+                        if (mem.socket != sender)
+                        {
+                            Send_1_Client(logoutusername, (byte)new Random().Next(1, 244), DataType.Logout, mem.socket, room.Id);
+                        }
+                    }
+                    ListRoom.Remove(room);
+                }
+                //Đưa lại hàng tạm
+                tempclient.Add(sender);
+                //xóa khỏi danh sách client đang on ( dĩ nhiên là gộp cái for này lên trên dc nhưng để riêng ra cho dễ hình dung )
+                foreach (Client _client in ListClients)
+                {
+                    if (_client.socket == sender)
+                    {
+                        ListClients.Remove(_client);
+                        break;
+                    }
+                }
+            }
+            #endregion
+
             #region tạo phòng
             if (type == DataType.CreatRoom)
             {
@@ -336,6 +381,7 @@ namespace Cy_Connection_Sever
             }
             #endregion
 
+            #region File
             if (type == DataType.Filename)
             {
                 FileControler.lastname = (string)DataConverter.Deserialize_Text(data);
@@ -346,12 +392,18 @@ namespace Cy_Connection_Sever
                 string mess = key + "@@@" + FileControler.lastname;
                 SendMesstoRoomm(sender, mess, type, RoomId);
             }
+
+            #endregion
+
+            #region downloadFIle
             if (type == DataType.DownloadFile)
             {
                 String indexRequest = (string)DataConverter.Deserialize_Text(data);
                 byte[] file = FileControler.loadfile(indexRequest);
                 Send_1_Client(file, (byte)new Random().Next(1, 244), type, sender, RoomId);
             }
+            #endregion
+
         }
 
 

@@ -32,10 +32,16 @@ namespace Clients
             myclient.ReciveTextEvent += Myclient_ReciveTextEvent;
             myclient.ReciveImageEvent += Myclient_ReciveImageEvent;
             myclient.ReciveLoginEvent += Myclient_ReciveLoginEvent;
+            myclient.ReceiveLogoutEvent += Myclient_ReceiveLogoutEvent;
             myclient.ReceiveListClientEvent += Myclient_ReceiveListClientEvent;
             myclient.ReceiveCreatRoomEvent += Myclient_ReceiveCreatRoomEvent;
             myclient.ReciveFileMessEvent += Myclient_ReciveFileMessEvent;
             myclient.ReceiveFileEvent += Myclient_ReceiveFileEvent;
+        }
+
+        private void Myclient_ReceiveLogoutEvent(string username, int room)
+        {
+            MessageBox.Show("Thông báo : thằng lờ "+ username + " tạch cmnr , chuẩn bị bay màu khỏi phòng "+room + " nhá  "+this.username+ " :3 ");
         }
 
         private void Myclient_ReciveTextEvent(string sender, object obj, int RoomId)
@@ -47,7 +53,7 @@ namespace Clients
         {
             string path = tbsaveas.Text;
             DataConverter.Deserialize_File(file, path, filename);
-            MessageBox.Show("Nhận file thành công");
+            MessageBox.Show("Nhận file thành cmn công");
         }
 
         private void Myclient_ReciveFileMessEvent(string sender, int indexoffile, string filename, int roomid)
@@ -194,6 +200,11 @@ namespace Clients
         private void tblogin_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            myclient.Logout(username);
         }
     }
 }
