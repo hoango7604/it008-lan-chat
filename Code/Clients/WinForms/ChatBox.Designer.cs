@@ -1,6 +1,6 @@
 ﻿namespace Clients
 {
-    partial class Form1
+    partial class ChatBox
     {
         /// <summary>
         /// Required designer variable.

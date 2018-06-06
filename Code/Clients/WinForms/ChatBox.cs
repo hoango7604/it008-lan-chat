@@ -11,7 +11,7 @@ using Cy_Connection_Client;
 
 namespace Clients
 {
-    public partial class Form1 : Form
+    public partial class ChatBox : Form
     {
         Client_module myclient;
         string username;
@@ -19,7 +19,7 @@ namespace Clients
         string filename;
         int indexoffile;
 
-        public Form1()
+        public ChatBox()
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();

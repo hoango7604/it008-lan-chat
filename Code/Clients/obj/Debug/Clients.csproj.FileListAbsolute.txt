@@ -9,3 +9,18 @@ C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clien
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.csproj.GenerateResource.Cache
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.exe
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.pdb
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\Clients.exe.config
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\Clients.exe
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\Clients.pdb
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\Cy_Connection_Client.dll
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\Cy_Connection_Client.pdb
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.ChatBox.resources
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.Properties.Resources.resources
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.csproj.GenerateResource.cache
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.csproj.CopyComplete
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.exe
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.pdb
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.Login.resources
+C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\obj\Debug\Clients.GroupList.resources
