@@ -30,11 +30,10 @@
         {
             this.layout = new System.Windows.Forms.TableLayoutPanel();
             this.button4 = new System.Windows.Forms.Button();
-            this.tblinkFile = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.tbText = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // layout
@@ -51,56 +50,38 @@
             this.layout.RowCount = 2;
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.33161F));
-            this.layout.Size = new System.Drawing.Size(1180, 338);
+            this.layout.Size = new System.Drawing.Size(1012, 338);
             this.layout.TabIndex = 9;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(839, 362);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(762, 410);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 36);
+            this.button4.Size = new System.Drawing.Size(86, 34);
             this.button4.TabIndex = 15;
             this.button4.Text = "Chọn file";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // tblinkFile
-            // 
-            this.tblinkFile.Location = new System.Drawing.Point(13, 364);
-            this.tblinkFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tblinkFile.Multiline = true;
-            this.tblinkFile.Name = "tblinkFile";
-            this.tblinkFile.Size = new System.Drawing.Size(814, 34);
-            this.tblinkFile.TabIndex = 17;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(839, 410);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(86, 34);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "Lưu file";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // tbText
             // 
-            this.tbText.Location = new System.Drawing.Point(13, 410);
+            this.tbText.Location = new System.Drawing.Point(13, 362);
             this.tbText.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
-            this.tbText.Size = new System.Drawing.Size(814, 34);
+            this.tbText.Size = new System.Drawing.Size(735, 34);
             this.tbText.TabIndex = 19;
             this.tbText.TextChanged += new System.EventHandler(this.tbText_TextChanged);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(933, 364);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(762, 362);
             this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 80);
+            this.button6.Size = new System.Drawing.Size(86, 34);
             this.button6.TabIndex = 20;
             this.button6.Text = "Gửi";
             this.button6.UseVisualStyleBackColor = true;
@@ -109,25 +90,32 @@
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(1116, 384);
+            this.button9.Location = new System.Drawing.Point(919, 378);
             this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(77, 66);
+            this.button9.Size = new System.Drawing.Size(106, 66);
             this.button9.TabIndex = 26;
             this.button9.Text = "Thoát";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(13, 410);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(735, 34);
+            this.label1.TabIndex = 27;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ChatBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 452);
+            this.ClientSize = new System.Drawing.Size(1038, 452);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbText);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.tbText);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.tblinkFile);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.layout);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -143,11 +131,10 @@
 
         private System.Windows.Forms.TableLayoutPanel layout;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox tblinkFile;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox tbText;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label1;
     }
 }
 
