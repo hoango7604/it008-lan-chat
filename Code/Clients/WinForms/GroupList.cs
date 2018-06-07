@@ -19,12 +19,18 @@ namespace Clients
         }
         void InitializeButtons()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Button button = new Button() { Width = buttonFlowLayoutPanel.ClientSize.Width };
-                button.Text = "Choose group " + i;
+
+                FlowLayoutPanel panel = new FlowLayoutPanel() { Height = buttonFlowLayoutPanel.ClientSize.Height - 280, Width = buttonFlowLayoutPanel.ClientSize.Width };
+                Label label = new Label() { Width = panel.ClientSize.Width - 200 , TextAlign = ContentAlignment.MiddleLeft };
+                Button button = new Button() { Height = label.ClientSize.Height };
+                label.Text = "User " + i;
+                button.Text = "Begin Messaging";
                 button.Click += new EventHandler(OpenChatbox);
-                buttonFlowLayoutPanel.Controls.Add(button);
+                panel.Controls.Add(label);
+                panel.Controls.Add(button);
+                buttonFlowLayoutPanel.Controls.Add(panel);
             }
         }
         void OpenChatbox(object sender, EventArgs e)

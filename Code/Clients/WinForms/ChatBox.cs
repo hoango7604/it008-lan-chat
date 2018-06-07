@@ -36,7 +36,7 @@ namespace Clients
             myclient.ReceiveListClientEvent += Myclient_ReceiveListClientEvent;
             myclient.ReceiveCreatRoomEvent += Myclient_ReceiveCreatRoomEvent;
             myclient.ReciveFileMessEvent += Myclient_ReciveFileMessEvent;
-            myclient.ReceiveFileEvent += Myclient_ReceiveFileEvent;
+            //myclient.ReceiveFileEvent += Myclient_ReceiveFileEvent;
         }
 
         private void Myclient_ReceiveLogoutEvent(string username, int room)
@@ -49,12 +49,12 @@ namespace Clients
             MessageBox.Show(username +" : tin nhắn từ "+sender+" : "+obj.ToString()+"  // tại phòng số "+RoomId);
         }
 
-        private void Myclient_ReceiveFileEvent(byte[] file)
-        {
-            string path = tbsaveas.Text;
-            DataConverter.Deserialize_File(file, path, filename);
-            MessageBox.Show("Nhận file thành cmn công");
-        }
+        //private void Myclient_ReceiveFileEvent(byte[] file)
+        //{
+        //    string path = tbsaveas.Text;
+        //    DataConverter.Deserialize_File(file, path, filename);
+        //    MessageBox.Show("Nhận file thành cmn công");
+        //}
 
         private void Myclient_ReciveFileMessEvent(string sender, int indexoffile, string filename, int roomid)
         {
@@ -126,25 +126,22 @@ namespace Clients
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            myclient.LogIn(tblogin.Text, "day la pass");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string username = tbcreatroom.Text;
-            string[] split = new string[] { " " };
-            string[] usenameSrr = username.Split(split, StringSplitOptions.RemoveEmptyEntries);
-            List<string> usernames = new List<string>(usenameSrr);
-            myclient.CreatRoomChat(usernames);
-        }
-
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    myclient.LogIn(tblogin.Text, "day la pass");
+        //}
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    string username = tbcreatroom.Text;
+        //    string[] split = new string[] { " " };
+        //    string[] usenameSrr = username.Split(split, StringSplitOptions.RemoveEmptyEntries);
+        //    List<string> usernames = new List<string>(usenameSrr);
+        //    myclient.CreatRoomChat(usernames);
+        //}
         private void button6_Click(object sender, EventArgs e)
         {
             myclient.SendText(tbText.Text, lastId);
         }
-
         string path;
         string name;
         private void button3_Click(object sender, EventArgs e)
@@ -154,7 +151,6 @@ namespace Clients
             dialog.Multiselect = false;
             dialog.ShowDialog();
             string s = dialog.FileName;
-            tblinkinage.Text = s;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -172,9 +168,9 @@ namespace Clients
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Image img = Image.FromFile(tblinkinage.Text.ToString());
-            tblinkinage.Clear();
-            myclient.SendImage(img, lastId);
+            //Image img = Image.FromFile(tblinkinage.Text.ToString());
+            //tblinkinage.Clear();
+            //myclient.SendImage(img, lastId);
         }
 
         private void button8_Click(object sender, EventArgs e)
