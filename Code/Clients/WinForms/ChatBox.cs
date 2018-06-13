@@ -160,7 +160,7 @@ namespace Clients
             dialog.Multiselect = false;
             dialog.ShowDialog();
             string s = dialog.FileName;
-            tblinkFile.Text = s;
+            //tblinkFile.Text = s;
             System.IO.FileInfo info = new System.IO.FileInfo(s);
             path = info.DirectoryName;
             name = info.Name;

@@ -25,11 +25,36 @@ namespace Clients
             InitializeComponent();
         }
 
+        
+        private void Login_Load(object sender, EventArgs e)
+        {
+            myclient = new Client_module();
+            myclient.Connect();
+            
+            myclient.ReceiveListClientEvent += ListCLientEvent;
+            myclient.ReciveLoginEvent += Myclient_ReciveLoginEvent;
+        }
+        private void Myclient_ReciveLoginEvent(string username)
+        {
+            MessageBox.Show("Login thành công vs usernam " + username);
+        }
+        private void ListCLientEvent(string[] listClients)
+        {
+            //string result = "";
+            //foreach (string name in listClients)
+            //{
+            //    result = result + " " + name;
+            //}
+            //MessageBox.Show("Current clients " + result);
+            MessageBox.Show("Success");
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            //myclient.LogIn(textBox1.Text, "1234");
-            GroupList groupList = new GroupList();
-            groupList.ShowDialog();
+            myclient.LogIn(textBox1.Text, "cylasion");
+            //GroupList groupList = new GroupList();
+            //groupList.SetClientModule(myclient);
+            //groupList.ShowDialog();
         }
+        
     }
 }

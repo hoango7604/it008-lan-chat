@@ -7,21 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cy_Connection_Client;
 
 namespace Clients
 {
     public partial class GroupList : Form
     {
+        Client_module myClient;
         public GroupList()
         {
             InitializeComponent();
             InitializeButtons();
         }
+        public void SetClientModule(Client_module _Module)
+        {
+            myClient = _Module;
+            //myClient.ReceiveListClientEvent += MyClient_ReceiveListClientEvent;
+        }
+
+        private void MyClient_ReceiveListClientEvent(string[] listClients)
+        {
+            string result = "";
+            foreach (string name in listClients)
+            {
+                result = result + " " + name;
+            }
+            MessageBox.Show("Current clients " + result);
+        }
+
         void InitializeButtons()
         {
             for (int i = 0; i < 10; i++)
             {
-
                 FlowLayoutPanel panel = new FlowLayoutPanel() { Height = buttonFlowLayoutPanel.ClientSize.Height - 280, Width = buttonFlowLayoutPanel.ClientSize.Width };
                 Label label = new Label() { Width = panel.ClientSize.Width - 200 , TextAlign = ContentAlignment.MiddleLeft };
                 Button button = new Button() { Height = label.ClientSize.Height };

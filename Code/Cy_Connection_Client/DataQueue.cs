@@ -244,8 +244,5 @@ namespace Cy_Connection_Client
             data[1] = ThreadingId;
             socket.Send(data);
         }
-
-
     }
-
 }
