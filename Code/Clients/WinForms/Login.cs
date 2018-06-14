@@ -36,7 +36,7 @@ namespace Clients
         }
         private void Myclient_ReciveLoginEvent(string username)
         {
-            MessageBox.Show("Login thành công vs usernam " + username);
+            MessageBox.Show("Login thành công với username " + username);
         }
         private void ListCLientEvent(string[] listClients)
         {
