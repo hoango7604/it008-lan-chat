@@ -41,7 +41,7 @@ namespace Clients
 
         private void Myclient_ReceiveLogoutEvent(string username, int room)
         {
-            MessageBox.Show("Thông báo : thằng lờ "+ username + " tạch cmnr , chuẩn bị bay màu khỏi phòng "+room + " nhá  "+this.username+ " :3 ");
+            MessageBox.Show("Thông báo: thằng lờ "+ username + " tạch cmnr , chuẩn bị bay màu khỏi phòng "+room + " nhá  " + this.username+ " :3 ");
         }
 
         private void Myclient_ReciveTextEvent(string sender, object obj, int RoomId)

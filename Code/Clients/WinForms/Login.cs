@@ -30,23 +30,31 @@ namespace Clients
         {
             myclient = new Client_module();
             myclient.Connect();
+            
+            myclient.ReceiveListClientEvent += ListCLientEvent;
             myclient.ReciveLoginEvent += Myclient_ReciveLoginEvent;
-        }
-        private void MyClient_ReceiveListClientEvent(string[] userv)
-        {
-            MessageBox.Show("Success");
         }
         private void Myclient_ReciveLoginEvent(string username)
         {
-            MessageBox.Show("Login thành công vs usernam " + username);
+            MessageBox.Show("Login thành công với username " + username);
+        }
+        private void ListCLientEvent(string[] listClients)
+        {
+            //string result = "";
+            //foreach (string name in listClients)
+            //{
+            //    result = result + " " + name;
+            //}
+            //MessageBox.Show("Current clients " + result);
+            MessageBox.Show("Success");
         }
         private void button1_Click(object sender, EventArgs e)
         {
             myclient.LogIn(textBox1.Text, "cylasion");
-            GroupList groupList = new GroupList();
-            //myclient.ReceiveListClientEvent += MyClient_ReceiveListClientEvent;
-            groupList.SetClientModule(myclient);
-            groupList.ShowDialog();
+            //GroupList groupList = new GroupList();
+            //groupList.SetClientModule(myclient);
+            //groupList.ShowDialog();
         }
+        
     }
 }
