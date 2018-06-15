@@ -14,6 +14,7 @@ namespace Sever
     public partial class sever : Form
     {
         Sever_module myserver;
+        System.Timers.Timer pingtimer;
         public sever()
         {
             InitializeComponent();
@@ -24,36 +25,19 @@ namespace Sever
         {
             myserver = new Sever_module();
             myserver.Connect();
+
+            pingtimer = new System.Timers.Timer();
+            pingtimer.Interval = 3000;
+            pingtimer.Elapsed += Pingtimer_Tick;
+            pingtimer.AutoReset = true;
+            pingtimer.Enabled = true;
         }
 
-        private void Myserver_ReciveImageEvent(object obj, int RoomId)
+        private void Pingtimer_Tick(object sender, EventArgs e)
         {
-            pussMess(obj);
-        }
+          // bỏ comment nó sẽ tự ping 
+         //   myserver.Ping();
 
-        private void pussMess(object data)
-        {
-            // o thể sửa UI từ 1 thread khác
-            // https://stackoverflow.com/questions/14750872/c-sharp-controls-created-on-one-thread-cannot-be-parented-to-a-control-on-a-diff
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke((MethodInvoker)delegate ()
-                {
-                    Image img = data as Image;
-                    PictureBox picBox = new PictureBox();
-                    picBox.Image = img;
-                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    layout.Controls.Add(picBox);
-                });
-            }
-            else
-            {
-                Image img = data as Image;
-                PictureBox picBox = new PictureBox();
-                picBox.Image = img;
-                picBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                layout.Controls.Add(picBox);
-            }
 
         }
 

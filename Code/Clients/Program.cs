@@ -15,9 +15,10 @@ namespace Clients
         [STAThread]
         static void Main()
         {
+            Thread.Sleep(550);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new GroupList());
         }
     }
 }
