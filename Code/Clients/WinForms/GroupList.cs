@@ -14,6 +14,10 @@ namespace Clients
     public partial class GroupList : Form
     {
         Client_module myClient;
+        string username;
+        byte lastId;
+        string filename;
+        int indexoffile;
         List<string> clientList = new List<string>();
         public GroupList()
         {
@@ -57,6 +61,32 @@ namespace Clients
         {
             ChatBox a = new ChatBox() { Text = "Chat Box" };
             a.Show();
+        }
+
+        private void GroupList_Load(object sender, EventArgs e)
+        {
+            myClient = new Client_module();
+            myClient.Connect();
+            //myClient.ReceiveListClientEvent += ListCLientEvent;
+            myClient.ReciveLoginEvent += Myclient_ReciveLoginEvent;
+
+            this.Visible = false;
+            Login logIn = new Login();
+            logIn.GroupListReference(this);
+            logIn.ShowDialog();
+        }
+        private void ListCLientEvent(string[] _listClient)
+        {
+
+        }
+        private void Myclient_ReciveLoginEvent(string username)
+        {
+            MessageBox.Show("Login thành công với username " + username);
+        }
+        public void LogIn(string _username,string _password)
+        {
+            this.Visible = true;
+            myClient.LogIn(_username, _password);
         }
     }
 }
