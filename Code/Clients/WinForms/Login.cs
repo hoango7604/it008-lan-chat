@@ -14,6 +14,7 @@ namespace Clients
     public partial class Login : Form
     {
         public string username = "";
+        GroupList instance;
         public Login()
         {
             InitializeComponent();
@@ -31,6 +32,13 @@ namespace Clients
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-        
+        public void GroupListReference(GroupList groupList)
+        {
+            instance = groupList;
+        }
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Application.Exit();
+        }
     }
 }

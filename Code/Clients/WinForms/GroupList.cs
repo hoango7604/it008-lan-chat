@@ -39,10 +39,7 @@ namespace Clients
             myClient.ReciveImageEvent += MyClient_ReciveImageEvent;
             myClient.ReciveLoginEvent += MyClient_ReciveLoginEvent;
             myClient.ReciveTextEvent += MyClient_ReciveTextEvent;
-
         }
-
-        
         private void Login()
         {
             Login loginform = new Login();
@@ -53,8 +50,13 @@ namespace Clients
                 string username = loginform.username;
                 myClient.LogIn(username, "WeDontHavePass");
             }
-            else
-                this.Close();
+            else this.Close();
+            loginform.GroupListReference(this);
+        }
+        public void LoginSuccess(string _username)
+        {
+            this.username = _username;
+            this.Visible = true;
         }
 
         void InitializeListClient()
@@ -79,7 +81,6 @@ namespace Clients
                 }
             }
         }
-
         private void Item_CreatRoomButtonEvenClick(string username)
         {
             List<string> room = new List<string>();
@@ -87,8 +88,6 @@ namespace Clients
             room.Add(username);
             myClient.CreatRoomChat(room);
         }
-
-
         private void MyClient_ReciveTextEvent(string sender, object obj, int RoomId)
         {
             //if (sender == username)
@@ -105,7 +104,6 @@ namespace Clients
                 }
             }
         }
-
         private void MyClient_ReciveLoginEvent(string username)
         {
             if (username != "UserAlreadyLogin")
@@ -121,7 +119,6 @@ namespace Clients
                 login.ShowDialog();
             }
         }
-
         private void MyClient_ReciveImageEvent(string sender, object obj, int RoomId)
         {
             //if (sender == username)
@@ -138,7 +135,6 @@ namespace Clients
                 }
             }
         }
-
         private void MyClient_ReciveFileMessEvent(string sender, int indexoffile, string filename, int roomid)
         {
             //if (sender == username)
@@ -155,7 +151,6 @@ namespace Clients
                 }
             }
         }
-
         private void MyClient_ReceiveFileEvent1(byte[] file,int roomId)
         {
             //if (sender == username)
@@ -172,13 +167,10 @@ namespace Clients
                 }
             }
         }
-
-
         private void MyClient_ReceiveLogoutEvent(string username, int room)
         {
             throw new NotImplementedException(); 
         }
-
         private void MyClient_ReceiveListClientEvent1(string[] listClients)
         {
             //xóa control có sẵn
@@ -186,8 +178,6 @@ namespace Clients
             onlineUser = new List<string>(listClients);
             InitializeListClient();
         }
-
-    
         private void MyClient_ReceiveCreatRoomEvent(int id, string[] listMember)
         {
             ChatBox box = new ChatBox(id, listMember);
@@ -203,7 +193,6 @@ namespace Clients
             new Thread(() => box.ShowDialog()).Start();
 
         }
-
         private void Box_RoomRequestOpenBrowserDialog(byte[] data , int roomid)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -218,12 +207,10 @@ namespace Clients
                 }
             }
         }
-
         private void Box_RoomRequestDownload(int id,int roomid)
         {
             myClient.RequestDownloadFile(id,roomid);    
         }
-
         #region xu li event cho 1 room
         private void Box_RoomSendMessEvent(object obj, int RoomId)
         {
@@ -242,7 +229,6 @@ namespace Clients
 
       
         #endregion
-
         private void GroupList_FormClosing(object sender, FormClosingEventArgs e)
         {
             myClient.Logout(this.username);

@@ -8,199 +8,197 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cy_Connection_Client;
+using Clients.Mess;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Clients
 {
     public partial class ChatBox : Form
     {
-        Client_module myclient;
-        string username;
-        byte lastId;
-        string filename;
-        int indexoffile;
 
-        public ChatBox()
+        public int RoomId;
+
+        public delegate void MessingDelegate(object obj, int RoomId);
+        public delegate void FileMessDelegate(string path, string filename, int roomid);
+        public delegate void DownLoadFileDelegate(int id, int roomid);
+        public delegate void OpenFolderBrowserDialogDelegate(byte[] file, int roomid);
+        public event MessingDelegate RoomSendMessEvent;
+        public event MessingDelegate RoomSendImageEvent;
+        public event FileMessDelegate RoomSendFileEvent;
+        public event DownLoadFileDelegate RoomRequestDownload;
+        public event OpenFolderBrowserDialogDelegate RoomRequestOpenBrowserDialog;
+
+
+        private string[] Member;
+        private Cy_Connection_Client.DataType typeSent;
+
+        string filepath = "";
+        string filename = "";
+
+        public ChatBox(int roomid, string[] member)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            this.RoomId = roomid;
+            this.Member = member;
+            this.Text = "Phòng chat " + roomid + " < " + member[0] + " && " + member[1] + " > ";
+
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Addcontrols(Control c)
         {
-            myclient = new Client_module();
-            myclient.Connect();
-            myclient.ReciveTextEvent += Myclient_ReciveTextEvent;
-            myclient.ReciveImageEvent += Myclient_ReciveImageEvent;
-            myclient.ReciveLoginEvent += Myclient_ReciveLoginEvent;
-            myclient.ReceiveLogoutEvent += Myclient_ReceiveLogoutEvent;
-            myclient.ReceiveListClientEvent += Myclient_ReceiveListClientEvent;
-            myclient.ReceiveCreatRoomEvent += Myclient_ReceiveCreatRoomEvent;
-            myclient.ReciveFileMessEvent += Myclient_ReciveFileMessEvent;
-            //myclient.ReceiveFileEvent += Myclient_ReceiveFileEvent;
-        }
-
-        private void Myclient_ReceiveLogoutEvent(string username, int room)
-        {
-            MessageBox.Show("Thông báo: thằng lờ "+ username + " tạch cmnr , chuẩn bị bay màu khỏi phòng "+room + " nhá  " + this.username+ " :3 ");
-        }
-
-        private void Myclient_ReciveTextEvent(string sender, object obj, int RoomId)
-        {
-            MessageBox.Show(username +" : tin nhắn từ "+sender+" : "+obj.ToString()+"  // tại phòng số "+RoomId);
-        }
-
-        //private void Myclient_ReceiveFileEvent(byte[] file)
-        //{
-        //    string path = tbsaveas.Text;
-        //    DataConverter.Deserialize_File(file, path, filename);
-        //    MessageBox.Show("Nhận file thành cmn công");
-        //}
-
-        private void Myclient_ReciveFileMessEvent(string sender, int indexoffile, string filename, int roomid)
-        {
-            this.filename = filename;
-            MessageBox.Show("username : " + username + " vừa nhận được file " + filename + " từ " + sender + " ở phòng " + roomid + " , ct sẽ tải về");
-
-            this.indexoffile = indexoffile;
-        }
-
-        private void Myclient_ReceiveCreatRoomEvent(int id, string[] listMember)
-        {
-            string members = "";
-            foreach (string mem in listMember)
-            {
-                members += " " + mem;
-            }
-            lastId = (byte)id;
-            MessageBox.Show("username : " + username + " , yêu cầu vào phòng " + id + " bao gồm " + members);
-        }
-
-        private void Myclient_ReceiveListClientEvent(string[] listClients)
-        {
-            string result = "";
-            foreach (string name in listClients)
-            {
-                result = result + " " + name;
-            }
-            MessageBox.Show("Current clients " + result);
-        }
-
-        private void Myclient_ReciveLoginEvent(string username)
-        {
-            MessageBox.Show("Login thành công vs usernam " + username);
-            this.username = username;
-            this.Name = username;
-        }
-
-        private void Myclient_ReciveImageEvent(string sendername, object obj, int RoomId)
-        {
-            MessageBox.Show(this.Name + "Vừa nhận dc tin nhắn từ " + sendername + "trong room " + RoomId);
-            putImage(obj); ;
-        }
-
-        private void putImage(object data)
-        {
-            // o thể sửa UI từ 1 thread khác
-            // https://stackoverflow.com/questions/14750872/c-sharp-controls-created-on-one-thread-cannot-be-parented-to-a-control-on-a-diff
             if (this.InvokeRequired)
             {
                 this.BeginInvoke((MethodInvoker)delegate ()
                 {
-                    Image img = data as Image;
-                    PictureBox picBox = new PictureBox();
-                    picBox.Image = img;
-                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    layout.Controls.Add(picBox);
-
-
+                    layout.Controls.Add(c);
                 });
             }
             else
             {
-                Image img = data as Image;
-                PictureBox picBox = new PictureBox();
-                picBox.Image = img;
-                picBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                layout.Controls.Add(picBox);
+                layout.Controls.Add(c);
+            }
+        }
+
+        public void ReceiveMessText(string sender, object info)
+        {
+            TextMessengerB messB = new TextMessengerB(sender, (string)info);
+            Addcontrols(messB);
+        }
+
+        public void ReceiveImage(string sender, object info)
+        {
+            ImageMessengerB imageB = new ImageMessengerB(sender, info);
+            Addcontrols(imageB);
+        }
+
+        public void ReceiveFileMess(string sender, int indexoffile, string filename, int roomid)
+        {
+            FileMessengerB fileB = new FileMessengerB(sender, indexoffile, filename);
+            fileB.DownLoadfileRequest += FileB_DownLoadfileRequest;
+            Addcontrols(fileB);
+        }
+
+        public void ReciverSavepath(string path, byte[] data)
+        {
+            Cy_Connection_Client.DataConverter.Deserialize_File(data, path, DownloadFilename);
+        }
+
+        string DownloadFilename;
+        private void FileB_DownLoadfileRequest(int id, string name)
+        {
+            if (RoomRequestDownload != null)
+            {
+                RoomRequestDownload(id, RoomId);
+                DownloadFilename = name;
             }
 
         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    myclient.LogIn(tblogin.Text, "day la pass");
-        //}
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    string username = tbcreatroom.Text;
-        //    string[] split = new string[] { " " };
-        //    string[] usenameSrr = username.Split(split, StringSplitOptions.RemoveEmptyEntries);
-        //    List<string> usernames = new List<string>(usenameSrr);
-        //    myclient.CreatRoomChat(usernames);
-        //}
-        private void button6_Click(object sender, EventArgs e)
+        public void ReceiveFileDownLoad(byte[] data)
         {
-            myclient.SendText(tbText.Text, lastId);
+            RoomRequestOpenBrowserDialog(data, RoomId);
         }
-        string path;
-        string name;
-        private void button3_Click(object sender, EventArgs e)
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSend_Click(object sender, EventArgs e)
+        {
+            if (typeSent == DataType.Text)
+            {
+                if (RoomSendMessEvent != null)
+                {
+                    RoomSendMessEvent(tbText.Text, RoomId);
+                    TextMeesengerA messA = new TextMeesengerA(tbText.Text);
+                    Addcontrols(messA);
+                }
+            }
+            if (typeSent == DataType.Image)
+            {
+                if (RoomSendImageEvent != null)
+                {
+                    Image img = Image.FromFile(tbText.Text.ToString());
+                    tbText.Clear();
+                    RoomSendImageEvent(img, RoomId);
+                    ImageMessengerA imageA = new ImageMessengerA(img);
+                    Addcontrols(imageA);
+                }
+            }
+
+
+            if (typeSent == DataType.File)
+            {
+                if (RoomSendFileEvent != null)
+                {
+                    tbText.Clear();
+                    RoomSendFileEvent(filepath, filename, RoomId);
+                    FileMessengerA fileA = new FileMessengerA(filepath, filename);
+                    RoomSendFileEvent(filepath, filename, RoomId);
+                    fileA.OpenfileEvent += FileA_OpenfileEvent;
+                    Addcontrols(fileA);
+                }
+            }
+
+        }
+
+        private void FileA_OpenfileEvent(string dir)
+        {
+            Process.Start(dir);
+        }
+
+        private void ChatBox_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void btChooseFile_Click(object sender, EventArgs e)
+        {
+            typeSent = DataType.File;
+            Thread t = new Thread(new ThreadStart(ChosefileDialog));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+
+
+
+
+        private void btChoosePicture_Click(object sender, EventArgs e)
+        {
+            typeSent = DataType.Image;
+            Thread t = new Thread(new ThreadStart(ChosefileDialog));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+
+        private void ChosefileDialog()
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            // dialog.Filter = "*png";
             dialog.Multiselect = false;
-            dialog.ShowDialog();
-            string s = dialog.FileName;
-        }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string s = dialog.FileName;
+                tbText.Text = s;
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            // dialog.Filter = "*png";
-            dialog.Multiselect = false;
-            dialog.ShowDialog();
-            string s = dialog.FileName;
-            //tblinkFile.Text = s;
-            System.IO.FileInfo info = new System.IO.FileInfo(s);
-            path = info.DirectoryName;
-            name = info.Name;
-        }
+                System.IO.FileInfo info = new System.IO.FileInfo(s);
+                filename = info.Name;
+                filepath = info.DirectoryName;
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            //Image img = Image.FromFile(tblinkinage.Text.ToString());
-            //tblinkinage.Clear();
-            //myclient.SendImage(img, lastId);
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            myclient.SendFile(path, name, lastId);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            myclient.RequestDownloadFile(indexoffile);
-        }
-
-        private void tbText_TextChanged(object sender, EventArgs e)
-        {
+            }
+            else
+            {
+                typeSent = DataType.Text;
+            }
 
         }
-
-        private void tbcreatroom_TextChanged(object sender, EventArgs e)
+        private void tbText_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tblogin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            myclient.Logout(username);
+            typeSent = DataType.Text;
         }
     }
 }
