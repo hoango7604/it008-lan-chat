@@ -18,6 +18,7 @@ namespace Clients
         Client_module myClient;
         List<string> onlineUser = new List<string>();
         List<ChatBox> listChatBox = new List<ChatBox>();
+        OnlineClientItem onlineClientItem;
         string username = "";
         public GroupList()
         {
@@ -61,13 +62,24 @@ namespace Clients
 
         void InitializeListClient()
         {
-           
-            //làm trống lại danh sách các button
+
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    buttonFlowLayoutPanel.Controls.Clear();
+                });
+            }
+            else
+            {
+                buttonFlowLayoutPanel.Controls.Clear();
+            }
 
             foreach (string name in onlineUser)
             {
                 OnlineClientItem item = new OnlineClientItem(name);
-                item.CreatRoomButtonEvenClick += Item_CreatRoomButtonEvenClick;               
+                item.CreatRoomButtonEvenClick += Item_CreatRoomButtonEvenClick;
+                onlineClientItem = item;
                 if (this.InvokeRequired)
                 {
                     this.BeginInvoke((MethodInvoker)delegate ()
@@ -81,11 +93,11 @@ namespace Clients
                 }
             }
         }
-        private void Item_CreatRoomButtonEvenClick(string username)
+        private void Item_CreatRoomButtonEvenClick(string _username)
         {
             List<string> room = new List<string>();
             room.Add(this.username);
-            room.Add(username);
+            room.Add(_username);
             myClient.CreatRoomChat(room);
         }
         private void MyClient_ReciveTextEvent(string sender, object obj, int RoomId)
