@@ -25,9 +25,9 @@ namespace Sever
         {
             myserver = new Sever_module();
             myserver.Connect();
-
+            myserver.Ping();
             pingtimer = new System.Timers.Timer();
-            pingtimer.Interval = 3000;
+            pingtimer.Interval = 2500;
             pingtimer.Elapsed += Pingtimer_Tick;
             pingtimer.AutoReset = true;
             pingtimer.Enabled = true;
@@ -35,10 +35,8 @@ namespace Sever
 
         private void Pingtimer_Tick(object sender, EventArgs e)
         {
-          // bỏ comment nó sẽ tự ping 
-         //   myserver.Ping();
-
-
+            // bỏ comment nó sẽ tự ping 
+            myserver.Ping();
         }
 
         private void button1_Click(object sender, EventArgs e)

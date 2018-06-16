@@ -30,7 +30,7 @@ namespace Clients
         {
             this.username = textBox1.Text;
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            this.Hide();
         }
         public void GroupListReference(GroupList groupList)
         {

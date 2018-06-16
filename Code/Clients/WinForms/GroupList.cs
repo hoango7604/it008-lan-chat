@@ -44,22 +44,16 @@ namespace Clients
         private void Login()
         {
             Login loginform = new Login();
-            this.Visible = false;
             DialogResult result =  loginform.ShowDialog();
             if (result == DialogResult.OK)
             {
+                this.Visible = true;
                 string username = loginform.username;
                 myClient.LogIn(username, "WeDontHavePass");
             }
-            else this.Close();
+            else this.Hide();
             loginform.GroupListReference(this);
         }
-        public void LoginSuccess(string _username)
-        {
-            this.username = _username;
-            this.Visible = true;
-        }
-
         void InitializeListClient()
         {
 
@@ -93,12 +87,27 @@ namespace Clients
                 }
             }
         }
+        bool CheckListClient(string _userName)
+        {
+            if (onlineUser != null)
+            {
+                foreach (string onlineUserName in onlineUser)
+                {
+                    if (_userName == onlineUserName) return true;
+                }
+            }
+            return false;
+        }
         private void Item_CreatRoomButtonEvenClick(string _username)
         {
-            List<string> room = new List<string>();
-            room.Add(this.username);
-            room.Add(_username);
-            myClient.CreatRoomChat(room);
+            if (this.username == _username) MessageBox.Show("You cannot create your own room");
+            else
+            {
+                List<string> room = new List<string>();
+                room.Add(this.username);
+                room.Add(_username);
+                myClient.CreatRoomChat(room);
+            }
         }
         private void MyClient_ReciveTextEvent(string sender, object obj, int RoomId)
         {

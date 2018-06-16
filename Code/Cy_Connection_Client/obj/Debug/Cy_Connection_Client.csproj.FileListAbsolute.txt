@@ -13,3 +13,4 @@ C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Cy_Connection_Client\bin\Debug\C
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.csproj.CoreCompileInputs.cache
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.dll
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.pdb
+C:\Users\ADMIN\Source\Repos\it008-lan-chat\Code\Cy_Connection_Client\obj\Debug\Cy_Connection_Client.csprojResolveAssemblyReference.cache

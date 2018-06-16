@@ -34,29 +34,32 @@
             // 
             // tbMess
             // 
-            this.tbMess.Location = new System.Drawing.Point(203, 22);
+            this.tbMess.Location = new System.Drawing.Point(304, 34);
+            this.tbMess.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbMess.Multiline = true;
             this.tbMess.Name = "tbMess";
-            this.tbMess.Size = new System.Drawing.Size(281, 41);
+            this.tbMess.Size = new System.Drawing.Size(420, 61);
             this.tbMess.TabIndex = 0;
             // 
             // lbsender
             // 
             this.lbsender.AutoSize = true;
-            this.lbsender.Location = new System.Drawing.Point(373, 6);
+            this.lbsender.Location = new System.Drawing.Point(560, 9);
+            this.lbsender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbsender.Name = "lbsender";
-            this.lbsender.Size = new System.Drawing.Size(35, 13);
+            this.lbsender.Size = new System.Drawing.Size(51, 20);
             this.lbsender.TabIndex = 1;
             this.lbsender.Text = "label1";
             // 
             // TextMessengerB
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbsender);
             this.Controls.Add(this.tbMess);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TextMessengerB";
-            this.Size = new System.Drawing.Size(500, 80);
+            this.Size = new System.Drawing.Size(750, 123);
             this.ResumeLayout(false);
             this.PerformLayout();
 
