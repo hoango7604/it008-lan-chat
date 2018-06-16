@@ -28,19 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbMess = new System.Windows.Forms.TextBox();
+            this.tbMess = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbMess
             // 
-            this.tbMess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tbMess.Location = new System.Drawing.Point(8, 12);
-            this.tbMess.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbMess.Multiline = true;
+            this.tbMess.Location = new System.Drawing.Point(3, 13);
             this.tbMess.Name = "tbMess";
-            this.tbMess.Size = new System.Drawing.Size(452, 67);
+            this.tbMess.Size = new System.Drawing.Size(500, 70);
             this.tbMess.TabIndex = 0;
-            this.tbMess.Text = "Mess";
             // 
             // TextMeesengerA
             // 
@@ -52,12 +48,11 @@
             this.Name = "TextMeesengerA";
             this.Size = new System.Drawing.Size(750, 97);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbMess;
+        private System.Windows.Forms.Label tbMess;
     }
 }

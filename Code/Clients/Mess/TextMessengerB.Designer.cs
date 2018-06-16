@@ -28,46 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbMess = new System.Windows.Forms.TextBox();
             this.lbsender = new System.Windows.Forms.Label();
+            this.tbMess = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // tbMess
-            // 
-            this.tbMess.Location = new System.Drawing.Point(304, 34);
-            this.tbMess.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbMess.Multiline = true;
-            this.tbMess.Name = "tbMess";
-            this.tbMess.Size = new System.Drawing.Size(420, 61);
-            this.tbMess.TabIndex = 0;
             // 
             // lbsender
             // 
-            this.lbsender.AutoSize = true;
-            this.lbsender.Location = new System.Drawing.Point(560, 9);
+            this.lbsender.Location = new System.Drawing.Point(665, 0);
             this.lbsender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbsender.Name = "lbsender";
-            this.lbsender.Size = new System.Drawing.Size(51, 20);
+            this.lbsender.Size = new System.Drawing.Size(85, 29);
             this.lbsender.TabIndex = 1;
             this.lbsender.Text = "label1";
+            this.lbsender.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbMess
+            // 
+            this.tbMess.Location = new System.Drawing.Point(250, 29);
+            this.tbMess.Name = "tbMess";
+            this.tbMess.Size = new System.Drawing.Size(500, 70);
+            this.tbMess.TabIndex = 0;
+            this.tbMess.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TextMessengerB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lbsender);
             this.Controls.Add(this.tbMess);
+            this.Controls.Add(this.lbsender);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TextMessengerB";
             this.Size = new System.Drawing.Size(750, 123);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbMess;
         private System.Windows.Forms.Label lbsender;
+        private System.Windows.Forms.Label tbMess;
     }
 }

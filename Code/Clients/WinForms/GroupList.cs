@@ -121,7 +121,7 @@ namespace Clients
             {
                 if (cb.RoomId == RoomId)
                 {
-                    cb.ReceiveMessText(sender, obj);
+                    if(sender!=username) cb.ReceiveMessText(sender, obj);
                 }
             }
         }
