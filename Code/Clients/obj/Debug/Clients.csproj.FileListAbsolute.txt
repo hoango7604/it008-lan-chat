@@ -4,7 +4,6 @@ C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clien
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\bin\Debug\Cy_Connection_Client.dll
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\bin\Debug\Cy_Connection_Client.pdb
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.csprojResolveAssemblyReference.cache
-C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Form1.resources
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Properties.Resources.resources
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.csproj.GenerateResource.Cache
 C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.exe
@@ -66,3 +65,13 @@ C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\de\DevExpress.
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\es\DevExpress.Pdf.v17.1.Core.resources.dll
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\ja\DevExpress.Pdf.v17.1.Core.resources.dll
 C:\Users\ADMIN\source\repos\it008-lan-chat\Code\Clients\bin\Debug\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.ChatBox.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.GroupList.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Login.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.WinForms.OnlineClientItem.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.TextMeesengerA.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.TextMessengerB.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.ImageMessengerA.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.ImageMessengerB.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.FileMessengerA.resources
+C:\Users\admin\OneDrive - gm.uit.edu.vn\Đồ án\LTTQ\it008-lan-chat\Code\Clients\obj\Debug\Clients.Mess.FileMessengerB.resources

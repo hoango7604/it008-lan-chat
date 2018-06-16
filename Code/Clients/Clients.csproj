@@ -50,6 +50,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mess\FileMessengerA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\FileMessengerA.Designer.cs">
+      <DependentUpon>FileMessengerA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mess\FileMessengerB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\FileMessengerB.Designer.cs">
+      <DependentUpon>FileMessengerB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mess\ImageMessengerA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\ImageMessengerA.Designer.cs">
+      <DependentUpon>ImageMessengerA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mess\ImageMessengerB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\ImageMessengerB.Designer.cs">
+      <DependentUpon>ImageMessengerB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mess\TextMeesengerA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\TextMeesengerA.Designer.cs">
+      <DependentUpon>TextMeesengerA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mess\TextMessengerB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mess\TextMessengerB.Designer.cs">
+      <DependentUpon>TextMessengerB.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\ChatBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +106,30 @@
     <Compile Include="WinForms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\OnlineClientItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\OnlineClientItem.Designer.cs">
+      <DependentUpon>OnlineClientItem.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Mess\FileMessengerA.resx">
+      <DependentUpon>FileMessengerA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mess\FileMessengerB.resx">
+      <DependentUpon>FileMessengerB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mess\ImageMessengerA.resx">
+      <DependentUpon>ImageMessengerA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mess\ImageMessengerB.resx">
+      <DependentUpon>ImageMessengerB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mess\TextMeesengerA.resx">
+      <DependentUpon>TextMeesengerA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mess\TextMessengerB.resx">
+      <DependentUpon>TextMessengerB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\ChatBox.resx">
       <DependentUpon>ChatBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\OnlineClientItem.resx">
+      <DependentUpon>OnlineClientItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

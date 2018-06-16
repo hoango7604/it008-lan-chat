@@ -302,6 +302,15 @@ namespace Cy_Connection_Sever
                 Client client;
                 client.socket = sender;
                 client.username = username;
+               
+                foreach(Client cli in ListClients)
+                {
+                    if (cli.username == username)
+                    {
+                        Send_1_Client("UserAlreadyLogin", (byte)new Random().Next(1, 244), DataType.Login, sender, 0);
+                        return;
+                    }
+                }
                 ListClients.Add(client);
                 Send_1_Client(username, (byte)new Random().Next(1, 244), DataType.Login, sender, 0);
 

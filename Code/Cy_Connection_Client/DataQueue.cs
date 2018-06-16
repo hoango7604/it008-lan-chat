@@ -236,7 +236,7 @@ namespace Cy_Connection_Client
                 remain--;
             }
             send(0, Index, temp);
-        }
+        } 
 
         private void send(byte stats, byte ThreadingId, byte[] data)
         {

@@ -16,7 +16,7 @@ namespace Cy_Connection_Client
     {
         public delegate void MessingDelegate(string sender, object obj, int RoomId);
         public delegate void FileMessDelegate(string sender, int indexoffile, string filename, int roomid);
-        public delegate void FileDownloadDelegate(byte[] file);
+        public delegate void FileDownloadDelegate(byte[] file,int roomId);
         public delegate void LoginDelegate(string username);
         public delegate void LogoutDelegate(string username, int room);
         public delegate void ListClientDelegate(string[] listClients);
@@ -178,9 +178,9 @@ namespace Cy_Connection_Client
         /// Gửi yêu cầu tải file có mã là index
         /// </summary>
         /// <param name="index">mã file cần tải</param>
-        public void RequestDownloadFile(int index)
+        public void RequestDownloadFile(int index,int RoomId)
         {
-            Send(index.ToString(), DataType.DownloadFile, 0);
+            Send(index.ToString(), DataType.DownloadFile, (byte)RoomId);
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@ namespace Cy_Connection_Client
             }
             if (type == DataType.DownloadFile)
             {
-                ReceiveFileEvent(data);
+                ReceiveFileEvent(data,RoomId);
             }
 
         }

@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.layout = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btChooseFile = new System.Windows.Forms.Button();
             this.tbText = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btSend = new System.Windows.Forms.Button();
+            this.lbFilename = new System.Windows.Forms.Label();
+            this.btChoosePicture = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // layout
@@ -45,61 +46,73 @@
             this.layout.RowCount = 2;
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.33161F));
-            this.layout.Size = new System.Drawing.Size(587, 220);
+            this.layout.Size = new System.Drawing.Size(500, 473);
             this.layout.TabIndex = 9;
             // 
-            // button4
+            // btChooseFile
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(412, 235);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 24);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Chọn file";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btChooseFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btChooseFile.Location = new System.Drawing.Point(407, 498);
+            this.btChooseFile.Name = "btChooseFile";
+            this.btChooseFile.Size = new System.Drawing.Size(88, 24);
+            this.btChooseFile.TabIndex = 15;
+            this.btChooseFile.Text = "Chọn file";
+            this.btChooseFile.UseVisualStyleBackColor = true;
+            this.btChooseFile.Click += new System.EventHandler(this.btChooseFile_Click);
             // 
             // tbText
             // 
-            this.tbText.Location = new System.Drawing.Point(9, 265);
+            this.tbText.Location = new System.Drawing.Point(4, 528);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
             this.tbText.Size = new System.Drawing.Size(491, 23);
             this.tbText.TabIndex = 19;
-            this.tbText.TextChanged += new System.EventHandler(this.tbText_TextChanged);
+            this.tbText.Click += new System.EventHandler(this.tbText_Click);
             // 
-            // button9
+            // btSend
             // 
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(506, 235);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(93, 53);
-            this.button9.TabIndex = 26;
-            this.button9.Text = "Gửi tin";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.btSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSend.Location = new System.Drawing.Point(501, 498);
+            this.btSend.Name = "btSend";
+            this.btSend.Size = new System.Drawing.Size(93, 53);
+            this.btSend.TabIndex = 26;
+            this.btSend.Text = "Gửi tin";
+            this.btSend.UseVisualStyleBackColor = true;
+            this.btSend.Click += new System.EventHandler(this.btSend_Click);
             // 
-            // label1
+            // lbFilename
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(345, 241);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Example.txt";
+            this.lbFilename.AutoSize = true;
+            this.lbFilename.Location = new System.Drawing.Point(340, 504);
+            this.lbFilename.Name = "lbFilename";
+            this.lbFilename.Size = new System.Drawing.Size(61, 13);
+            this.lbFilename.TabIndex = 0;
+            this.lbFilename.Text = "Example.txt";
+            // 
+            // btChoosePicture
+            // 
+            this.btChoosePicture.Location = new System.Drawing.Point(407, 558);
+            this.btChoosePicture.Name = "btChoosePicture";
+            this.btChoosePicture.Size = new System.Drawing.Size(75, 23);
+            this.btChoosePicture.TabIndex = 27;
+            this.btChoosePicture.Text = "chon anh";
+            this.btChoosePicture.UseVisualStyleBackColor = true;
+            this.btChoosePicture.Click += new System.EventHandler(this.btChoosePicture_Click);
             // 
             // ChatBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 295);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(606, 589);
+            this.Controls.Add(this.btChoosePicture);
+            this.Controls.Add(this.lbFilename);
             this.Controls.Add(this.tbText);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btSend);
+            this.Controls.Add(this.btChooseFile);
             this.Controls.Add(this.layout);
             this.Name = "ChatBox";
             this.Text = "Tin nhắn";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatBox_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -109,10 +122,11 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel layout;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btChooseFile;
         private System.Windows.Forms.TextBox tbText;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btSend;
+        private System.Windows.Forms.Label lbFilename;
+        private System.Windows.Forms.Button btChoosePicture;
     }
 }
 
