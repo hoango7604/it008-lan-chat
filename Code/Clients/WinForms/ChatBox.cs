@@ -44,7 +44,7 @@ namespace Clients
         }
         public void PartnerLogout(string username)
         {
-            MessageBox.Show("Dối phương đã dăng xuất");
+            MessageBox.Show(username+" đã dăng xuất");
         }
         private void Addcontrols(Control c)
         {

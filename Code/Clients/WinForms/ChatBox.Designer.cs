@@ -44,22 +44,20 @@
             this.layout.BackColor = System.Drawing.Color.White;
             this.layout.ColumnCount = 1;
             this.layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layout.Location = new System.Drawing.Point(7, 14);
-            this.layout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.layout.Location = new System.Drawing.Point(5, 9);
             this.layout.Name = "layout";
             this.layout.RowCount = 2;
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.33161F));
-            this.layout.Size = new System.Drawing.Size(779, 504);
+            this.layout.Size = new System.Drawing.Size(519, 328);
             this.layout.TabIndex = 9;
             // 
             // tbText
             // 
-            this.tbText.Location = new System.Drawing.Point(7, 528);
-            this.tbText.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbText.Location = new System.Drawing.Point(5, 343);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
-            this.tbText.Size = new System.Drawing.Size(779, 101);
+            this.tbText.Size = new System.Drawing.Size(521, 67);
             this.tbText.TabIndex = 19;
             this.tbText.Click += new System.EventHandler(this.tbText_Click);
             // 
@@ -67,10 +65,9 @@
             // 
             this.btfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btfile.Image = global::Clients.Properties.Resources.attachment;
-            this.btfile.Location = new System.Drawing.Point(620, 639);
-            this.btfile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btfile.Location = new System.Drawing.Point(336, 415);
             this.btfile.Name = "btfile";
-            this.btfile.Size = new System.Drawing.Size(54, 52);
+            this.btfile.Size = new System.Drawing.Size(45, 51);
             this.btfile.TabIndex = 30;
             this.btfile.TabStop = false;
             this.btfile.Click += new System.EventHandler(this.btfile_Click);
@@ -79,10 +76,9 @@
             // 
             this.btChooseImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btChooseImage.Image = global::Clients.Properties.Resources.image;
-            this.btChooseImage.Location = new System.Drawing.Point(548, 639);
-            this.btChooseImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btChooseImage.Location = new System.Drawing.Point(261, 416);
             this.btChooseImage.Name = "btChooseImage";
-            this.btChooseImage.Size = new System.Drawing.Size(52, 52);
+            this.btChooseImage.Size = new System.Drawing.Size(49, 52);
             this.btChooseImage.TabIndex = 29;
             this.btChooseImage.TabStop = false;
             this.btChooseImage.Click += new System.EventHandler(this.btimage_Click);
@@ -91,26 +87,24 @@
             // 
             this.btsent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btsent.Image = global::Clients.Properties.Resources.Sentbt;
-            this.btsent.Location = new System.Drawing.Point(695, 639);
-            this.btsent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btsent.Location = new System.Drawing.Point(415, 417);
             this.btsent.Name = "btsent";
-            this.btsent.Size = new System.Drawing.Size(91, 52);
+            this.btsent.Size = new System.Drawing.Size(109, 51);
             this.btsent.TabIndex = 28;
             this.btsent.TabStop = false;
             this.btsent.Click += new System.EventHandler(this.btsent_Click);
             // 
             // ChatBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(799, 712);
+            this.ClientSize = new System.Drawing.Size(531, 501);
             this.Controls.Add(this.btfile);
             this.Controls.Add(this.btChooseImage);
             this.Controls.Add(this.btsent);
             this.Controls.Add(this.tbText);
             this.Controls.Add(this.layout);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChatBox";
             this.Text = "Tin nhắn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatBox_FormClosing);

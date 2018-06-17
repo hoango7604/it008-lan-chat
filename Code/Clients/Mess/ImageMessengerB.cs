@@ -12,13 +12,16 @@ namespace Clients.Mess
 {
     public partial class ImageMessengerB : UserControl
     {
+        private object image;
+
         public ImageMessengerB(string sender,object img)
         {
             InitializeComponent();
             lbsender.Text = sender;
-            putImage(img);
+            this.image = img;
+            putImage();
         }
-        private void putImage(object data)
+        private void putImage()
         {
             // o thể sửa UI từ 1 thread khác
             // https://stackoverflow.com/questions/14750872/c-sharp-controls-created-on-one-thread-cannot-be-parented-to-a-control-on-a-diff
@@ -26,7 +29,7 @@ namespace Clients.Mess
             {
                 this.BeginInvoke((MethodInvoker)delegate ()
                 {
-                    Image img = data as Image;
+                    Image img = image as Image;
                     pictureBox.Image = img;
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -34,11 +37,24 @@ namespace Clients.Mess
             }
             else
             {
-                Image img = data as Image;
+                Image img = image as Image;
                 pictureBox.Image = img;
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
 
+        }
+
+        private void pictureBox_DoubleClick(object sender, EventArgs e)
+        {
+            Form form = new Form();
+
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = image as Image;
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            form.Controls.Add(pictureBox);
+            form.WindowState = FormWindowState.Maximized;
+            form.ShowDialog();
         }
     }
 }

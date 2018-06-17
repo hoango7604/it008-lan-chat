@@ -51,15 +51,13 @@ namespace Clients
             if (result == DialogResult.OK)
             {
                 this.Visible = true;
-                string username = loginform.username;
+                username = loginform.username;
                 myClient.LogIn(username, "WeDontHavePass");
+               
             }
             else this.Hide();
         }
-        //private void LoginSuccess()
-        //{
-
-        //}
+        
         void InitializeListClient()
         {
 
