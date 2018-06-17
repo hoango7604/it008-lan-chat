@@ -36,7 +36,7 @@ namespace Sever
         private void Pingtimer_Tick(object sender, EventArgs e)
         {
             // bỏ comment nó sẽ tự ping 
-            myserver.Ping();
+          //  myserver.Ping();
         }
 
         private void button1_Click(object sender, EventArgs e)
