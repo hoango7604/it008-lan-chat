@@ -36,8 +36,8 @@
             // lbName
             // 
             this.lbName.BackColor = System.Drawing.Color.White;
-            this.lbName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbName.Location = new System.Drawing.Point(57, 14);
+            this.lbName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbName.Location = new System.Drawing.Point(110, 9);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(109, 21);
             this.lbName.TabIndex = 0;
@@ -47,8 +47,9 @@
             // 
             // btCreat
             // 
-            this.btCreat.BackColor = System.Drawing.Color.White;
-            this.btCreat.Location = new System.Drawing.Point(196, 6);
+            this.btCreat.BackColor = System.Drawing.Color.LightGray;
+            this.btCreat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btCreat.Location = new System.Drawing.Point(231, 1);
             this.btCreat.Name = "btCreat";
             this.btCreat.Size = new System.Drawing.Size(139, 37);
             this.btCreat.TabIndex = 1;
@@ -59,21 +60,22 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 18);
+            this.label2.Location = new System.Drawing.Point(45, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "User";
+            this.label2.Text = "Username";
             // 
             // OnlineClientItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btCreat);
             this.Controls.Add(this.lbName);
             this.Name = "OnlineClientItem";
-            this.Size = new System.Drawing.Size(356, 54);
+            this.Size = new System.Drawing.Size(440, 40);
             this.ResumeLayout(false);
             this.PerformLayout();
 

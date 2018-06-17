@@ -34,7 +34,7 @@
             // 
             // lbsender
             // 
-            this.lbsender.Location = new System.Drawing.Point(665, 0);
+            this.lbsender.Location = new System.Drawing.Point(652, 0);
             this.lbsender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbsender.Name = "lbsender";
             this.lbsender.Size = new System.Drawing.Size(85, 29);
@@ -46,7 +46,7 @@
             // 
             this.tbMess.Location = new System.Drawing.Point(250, 29);
             this.tbMess.Name = "tbMess";
-            this.tbMess.Size = new System.Drawing.Size(500, 70);
+            this.tbMess.Size = new System.Drawing.Size(487, 70);
             this.tbMess.TabIndex = 0;
             this.tbMess.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 

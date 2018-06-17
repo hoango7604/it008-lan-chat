@@ -29,98 +29,95 @@
         private void InitializeComponent()
         {
             this.layout = new System.Windows.Forms.TableLayoutPanel();
-            this.btChooseFile = new System.Windows.Forms.Button();
             this.tbText = new System.Windows.Forms.TextBox();
-            this.btSend = new System.Windows.Forms.Button();
-            this.lbFilename = new System.Windows.Forms.Label();
-            this.btChoosePicture = new System.Windows.Forms.Button();
+            this.btfile = new System.Windows.Forms.PictureBox();
+            this.btChooseImage = new System.Windows.Forms.PictureBox();
+            this.btsent = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.btfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btChooseImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btsent)).BeginInit();
             this.SuspendLayout();
             // 
             // layout
             // 
             this.layout.AutoScroll = true;
+            this.layout.BackColor = System.Drawing.Color.White;
             this.layout.ColumnCount = 1;
             this.layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layout.Location = new System.Drawing.Point(18, 14);
+            this.layout.Location = new System.Drawing.Point(7, 14);
             this.layout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.layout.Name = "layout";
             this.layout.RowCount = 2;
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.33161F));
-            this.layout.Size = new System.Drawing.Size(786, 529);
+            this.layout.Size = new System.Drawing.Size(779, 504);
             this.layout.TabIndex = 9;
-            // 
-            // btChooseFile
-            // 
-            this.btChooseFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btChooseFile.Location = new System.Drawing.Point(520, 562);
-            this.btChooseFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btChooseFile.Name = "btChooseFile";
-            this.btChooseFile.Size = new System.Drawing.Size(132, 37);
-            this.btChooseFile.TabIndex = 15;
-            this.btChooseFile.Text = "Chọn file";
-            this.btChooseFile.UseVisualStyleBackColor = true;
-            this.btChooseFile.Click += new System.EventHandler(this.btChooseFile_Click);
             // 
             // tbText
             // 
-            this.tbText.Location = new System.Drawing.Point(18, 611);
+            this.tbText.Location = new System.Drawing.Point(7, 528);
             this.tbText.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
-            this.tbText.Size = new System.Drawing.Size(634, 33);
+            this.tbText.Size = new System.Drawing.Size(779, 101);
             this.tbText.TabIndex = 19;
             this.tbText.Click += new System.EventHandler(this.tbText_Click);
             // 
-            // btSend
+            // btfile
             // 
-            this.btSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSend.Location = new System.Drawing.Point(664, 562);
-            this.btSend.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btSend.Name = "btSend";
-            this.btSend.Size = new System.Drawing.Size(140, 82);
-            this.btSend.TabIndex = 26;
-            this.btSend.Text = "Gửi tin";
-            this.btSend.UseVisualStyleBackColor = true;
-            this.btSend.Click += new System.EventHandler(this.btSend_Click);
+            this.btfile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btfile.Image = global::Clients.Properties.Resources.attachment;
+            this.btfile.Location = new System.Drawing.Point(620, 639);
+            this.btfile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btfile.Name = "btfile";
+            this.btfile.Size = new System.Drawing.Size(54, 52);
+            this.btfile.TabIndex = 30;
+            this.btfile.TabStop = false;
+            this.btfile.Click += new System.EventHandler(this.btfile_Click);
             // 
-            // lbFilename
+            // btChooseImage
             // 
-            this.lbFilename.AutoSize = true;
-            this.lbFilename.Location = new System.Drawing.Point(420, 571);
-            this.lbFilename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFilename.Name = "lbFilename";
-            this.lbFilename.Size = new System.Drawing.Size(91, 20);
-            this.lbFilename.TabIndex = 0;
-            this.lbFilename.Text = "Example.txt";
+            this.btChooseImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btChooseImage.Image = global::Clients.Properties.Resources.image;
+            this.btChooseImage.Location = new System.Drawing.Point(548, 639);
+            this.btChooseImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btChooseImage.Name = "btChooseImage";
+            this.btChooseImage.Size = new System.Drawing.Size(52, 52);
+            this.btChooseImage.TabIndex = 29;
+            this.btChooseImage.TabStop = false;
+            this.btChooseImage.Click += new System.EventHandler(this.btimage_Click);
             // 
-            // btChoosePicture
+            // btsent
             // 
-            this.btChoosePicture.Location = new System.Drawing.Point(520, 652);
-            this.btChoosePicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btChoosePicture.Name = "btChoosePicture";
-            this.btChoosePicture.Size = new System.Drawing.Size(132, 35);
-            this.btChoosePicture.TabIndex = 27;
-            this.btChoosePicture.Text = "chon anh";
-            this.btChoosePicture.UseVisualStyleBackColor = true;
-            this.btChoosePicture.Click += new System.EventHandler(this.btChoosePicture_Click);
+            this.btsent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btsent.Image = global::Clients.Properties.Resources.Sentbt;
+            this.btsent.Location = new System.Drawing.Point(695, 639);
+            this.btsent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btsent.Name = "btsent";
+            this.btsent.Size = new System.Drawing.Size(91, 52);
+            this.btsent.TabIndex = 28;
+            this.btsent.TabStop = false;
+            this.btsent.Click += new System.EventHandler(this.btsent_Click);
             // 
             // ChatBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 732);
-            this.Controls.Add(this.btChoosePicture);
-            this.Controls.Add(this.lbFilename);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(799, 712);
+            this.Controls.Add(this.btfile);
+            this.Controls.Add(this.btChooseImage);
+            this.Controls.Add(this.btsent);
             this.Controls.Add(this.tbText);
-            this.Controls.Add(this.btSend);
-            this.Controls.Add(this.btChooseFile);
             this.Controls.Add(this.layout);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChatBox";
             this.Text = "Tin nhắn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatBox_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.btfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btChooseImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btsent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,11 +126,10 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel layout;
-        private System.Windows.Forms.Button btChooseFile;
         private System.Windows.Forms.TextBox tbText;
-        private System.Windows.Forms.Button btSend;
-        private System.Windows.Forms.Label lbFilename;
-        private System.Windows.Forms.Button btChoosePicture;
+        private System.Windows.Forms.PictureBox btsent;
+        private System.Windows.Forms.PictureBox btChooseImage;
+        private System.Windows.Forms.PictureBox btfile;
     }
 }
 

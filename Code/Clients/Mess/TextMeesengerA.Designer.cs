@@ -33,9 +33,9 @@
             // 
             // tbMess
             // 
-            this.tbMess.Location = new System.Drawing.Point(3, 13);
+            this.tbMess.Location = new System.Drawing.Point(15, 13);
             this.tbMess.Name = "tbMess";
-            this.tbMess.Size = new System.Drawing.Size(500, 70);
+            this.tbMess.Size = new System.Drawing.Size(488, 70);
             this.tbMess.TabIndex = 0;
             // 
             // TextMeesengerA

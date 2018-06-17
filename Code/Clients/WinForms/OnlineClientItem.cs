@@ -26,13 +26,17 @@ namespace Clients.WinForms
             InitializeComponent();
             lbName.Text = username;
             this.username = username;
+            lbName.BackColor = Color.FromArgb(150, 230, 120);
         }
-
+        public void setCurrentUser()
+        {
+            lbName.BackColor = Color.FromArgb(132, 204, 249);
+            btCreat.Enabled = false;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btCreat_Click(object sender, EventArgs e)
         {
             CreatRoomButtonEvenClick(this.username);

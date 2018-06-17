@@ -15,22 +15,24 @@ namespace Clients
     {
         public string username = "";
         GroupList instance;
+        public bool loginSuccess = false;
         public Login()
         {
             InitializeComponent();
         }
-
-        
         private void Login_Load(object sender, EventArgs e)
         {
-            
+
         }
-      
+
         private void button1_Click(object sender, EventArgs e)
         {
-            this.username = textBox1.Text;
+            string username = textBox1.Text;
+            username.Replace(" ", "_");
+            loginSuccess = true;
+            this.username = username;
             this.DialogResult = DialogResult.OK;
-            this.Hide();
+            //this.Close();
         }
         public void GroupListReference(GroupList groupList)
         {
