@@ -53,13 +53,11 @@ namespace Clients
                 this.Visible = true;
                 username = loginform.username;
                 myClient.LogIn(username, "WeDontHavePass");
+               
             }
             else this.Hide();
         }
-        //private void LoginSuccess()
-        //{
-
-        //}
+        
         void InitializeListClient()
         {
 
@@ -116,6 +114,15 @@ namespace Clients
             }
             else
             {
+                foreach(ChatBox cb in listChatBox)
+                {
+                    if ((username== cb.Member[0] && _username == cb.Member[1] ) || ((username == cb.Member[1] && _username == cb.Member[0])))
+                    {               
+                        new Thread(() => cb.ShowDialog()).Start();
+                        return;
+                    }
+                }
+
                 List<string> room = new List<string>();
                 room.Add(this.username);
                 room.Add(_username);
@@ -220,7 +227,7 @@ namespace Clients
             {
                 title = "Username : " + username + " chatting with " + listMember[0];
             }
-            ChatBox box = new ChatBox(id, title);
+            ChatBox box = new ChatBox(id, title,listMember);
             box.RoomSendFileEvent += Box_RoomSendFileEvent;
             box.RoomSendImageEvent += Box_RoomSendImageEvent;
             box.RoomSendMessEvent += Box_RoomSendMessEvent;

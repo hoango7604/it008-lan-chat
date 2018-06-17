@@ -18,6 +18,7 @@ namespace Clients
     {
 
         public int RoomId;
+        public string[] Member;
 
         public delegate void MessingDelegate(object obj, int RoomId);
         public delegate void FileMessDelegate(string path, string filename, int roomid);
@@ -34,18 +35,20 @@ namespace Clients
 
         string filepath = "";
         string filename = "";
-
-        public ChatBox(int roomid, string tile)
+       
+        public ChatBox(int roomid, string tile,string[] member)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             this.RoomId = roomid;
+            this.Member = member;
             this.Text = tile;
         }
         public void PartnerLogout(string username)
         {
-            MessageBox.Show("Dối phương đã dăng xuất");
+            MessageBox.Show(username+" đã dăng xuất");
         }
+
         private void Addcontrols(Control c)
         {
             if (this.InvokeRequired)

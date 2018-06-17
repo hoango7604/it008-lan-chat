@@ -38,6 +38,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.lbSender);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(273, 7);
@@ -79,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Name = "FileMessengerB";
             this.Size = new System.Drawing.Size(500, 55);
