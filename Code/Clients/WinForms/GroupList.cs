@@ -167,7 +167,7 @@ namespace Clients
             }
         }
         private void MyClient_ReciveFileMessEvent(string sender, int indexoffile, string filename, int roomid)
-        {
+        { 
             if (sender == username)
             {
                 return;
