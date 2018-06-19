@@ -27,7 +27,7 @@ namespace Sever
             myserver.Connect();
             myserver.Ping();
             pingtimer = new System.Timers.Timer();
-            pingtimer.Interval = 2500;
+            pingtimer.Interval = 1500;
             pingtimer.Elapsed += Pingtimer_Tick;
             pingtimer.AutoReset = true;
             pingtimer.Enabled = true;
