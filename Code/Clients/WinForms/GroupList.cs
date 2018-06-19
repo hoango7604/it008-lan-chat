@@ -53,9 +53,9 @@ namespace Clients
                 this.Visible = true;
                 username = loginform.username;
                 myClient.LogIn(username, "WeDontHavePass");
-               
+
             }
-            else this.Hide();
+            else this.Close();
         }
         
         void InitializeListClient()
@@ -274,7 +274,14 @@ namespace Clients
 
         private void GroupList_FormClosing(object sender, FormClosingEventArgs e)
         {
+           
+        }
+
+        private void linkLabel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
             myClient.Logout(this.username);
+            this.Hide();
+            Login();
         }
     }
 }

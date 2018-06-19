@@ -46,6 +46,11 @@ namespace Clients.Mess
 
         private void pictureBox_DoubleClick(object sender, EventArgs e)
         {
+          
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
             Form form = new Form();
 
             PictureBox pictureBox = new PictureBox();
